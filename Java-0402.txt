@@ -1,0 +1,65 @@
+public class Test{
+	//判断2000到3000之间的闰年
+	public static boolean isLeapYear(int year){
+		if(year % 4 == 0){
+			if(year % 100 != 0){
+				return true;
+			}
+		}
+		else if(year % 400 == 0){
+			return true;
+		}
+		return false;
+	}
+
+//写一个函数  求1-100的和； 偶数的和；奇数的和；
+	 public static void function(int n){
+	 	int sum1 = 0;	//全部的数的和
+	 	int sum2 = 0;	//偶数的和
+	 	int sum3 = 0;	//奇数的和
+	 	for (int i = 1;i < n;i++ ) {
+	 		sum1 = sum1 + i;
+	 		if (i % 2 == 0) {
+	 			sum2 = sum2 + i;
+	 		}
+	 		else{
+	 			sum3 = sum3 + i;
+	 		}
+	 	}
+	 	System.out.println(sum1);
+	 	System.out.println(sum2);
+	 	System.out.println(sum3);
+	 }
+
+	 public static void function2(int n){
+	 	int sum1 = 0;   //全部的数的和
+	 	int sum2 = 0;   //偶数的和
+	 	int sum3 = 0;   //奇数的和
+	 	int i = 0;
+	 	while(i < n) {
+	 		i++;
+	 		sum1 = sum1 + i;
+	 		if (i % 2 == 0) {
+	 			sum2 = sum2 + i;
+	 		}
+	 		else{
+	 			sum3 = sum3 + i;
+	 		}
+	 	}
+	 	System.out.println(sum1);
+	 	System.out.println(sum2);
+	 	System.out.println(sum3);
+	 }
+
+	 public static void main(String[] args) {
+	 	//for (int year = 2000;year <= 3000 ;year++ ) {
+	 		//System.out.println(year);
+	 		function2(100);
+	 	//}
+	 }
+}
+
+
+	 
+
+	
