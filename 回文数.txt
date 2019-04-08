@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        int str = 0;
+        int rec = 0;
+        int a = x;
+        if(x >= 0){
+           while(x != 0){
+                str = x % 10;
+                x /= 10;
+                rec = rec * 10 + str;
+            }  
+            if(rec == a){
+                return true;
+            }
+            else{
+                return false;
+            } 
+        }
+        else{
+            return false;
+        }
+    }  
+}
