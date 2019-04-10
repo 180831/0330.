@@ -1,0 +1,102 @@
+public interface Computer {
+    void outputcompuyer();
+}                              //定义了一个名为电脑接口
+
+class ProComputer implements Computer{
+
+    @Override
+    public void outputcompuyer() {
+
+        System.out.println("这是一个苹果电脑");
+    }
+}                               //第一个实现电脑接口
+
+class MiComputer implements Computer{
+
+    @Override
+    public void outputcompuyer() {
+
+        System.out.println("这是一个小米电脑");
+    }
+}                               //第二个实现电脑接口
+
+interface OperatingSystem{
+    void outSystem();
+}                               //定义了一个名为系统的接口
+
+class LinuxSystem implements OperatingSystem{
+
+    @Override
+    public void outSystem() {
+        System.out.println("它支持Linux系统");
+    }
+}                               //第一个实现系统接口的Linux类
+
+class IosSystem implements OperatingSystem{
+
+    @Override
+    public void outSystem() {
+        System.out.println("它支持Ios系统");
+    }
+}                               //第二个实现系统接口的IOS类
+
+interface ComputerFactory {
+    Computer createComputer();
+    OperatingSystem createSystem();
+}                               //定义了一个名为计算机工厂接口
+
+class MiBookComputer implements ComputerFactory{
+
+    @Override
+    public Computer createComputer() {
+        return new MiComputer();
+    }
+
+    @Override
+    public OperatingSystem createSystem() {
+        return new LinuxSystem();
+    }
+}                               //第一种实现计算机工厂接口
+
+class ProbookComputer implements ComputerFactory{
+
+    @Override
+    public Computer createComputer() {
+        return new ProComputer();
+    }                           
+
+    @Override
+    public OperatingSystem createSystem() {
+        return new IosSystem();
+    }
+}                               //第二种实现计算机工厂接口
+
+
+class Client {
+    public void BuyComputer(Computer computer) {
+
+        computer.outputcompuyer();
+    }       //具体对象的输出
+
+    public void use (OperatingSystem s){
+
+        s.outSystem();
+    }       //具体对象的输出
+
+    public static void main(String[] args) {
+
+        Client client = new Client();
+        //得到一个具体输出的对象
+
+        ComputerFactory factory = new MiBookComputer();
+        //实例化一个具体的已知目标对象
+        //得到一个计算机工厂类接口所创建的实现他的子类对象
+
+        Computer computer = factory.createComputer();
+        OperatingSystem system = factory.createSystem();
+        client.BuyComputer(computer);
+        client.use(system);
+        //调用符合自己参数类型的变量，而变量则是通过已经实例化的对象的方法来实现
+
+    }
+}
