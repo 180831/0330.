@@ -1,0 +1,57 @@
+public interface Isubject {
+    void outComputer();
+}                               //定义一个被实现的接口
+
+class realSubject implements Isubject{
+
+    @Override
+    public void outComputer() {
+        System.out.println("买一个华为电脑");
+    }
+}                               //真实实现接口
+
+class ProxySubject implements Isubject{
+                                //辅助继承接口
+
+    private  Isubject isubject; //定义一个私有的属性
+
+    public ProxySubject(Isubject isubject){
+        this.isubject = isubject;
+    }                           //构造函数
+
+    public void beforeSellComputer(){
+        System.out.println("出售电脑前的准备");
+    }                           //成员方法一
+
+    public void afterSellComputer(){
+        System.out.println("售后服务");
+    }                           //成员方法二
+
+
+    @Override
+    public void outComputer() {
+        this.beforeSellComputer();
+        this.isubject.outComputer();
+        this.afterSellComputer();
+    }                           //实现继承的接口的那个类
+}
+
+class Factry{
+    public static Isubject getInstance(){
+        return new ProxySubject(new realSubject());
+    }
+    //重点：生成辅助类的构造函数，形参为真实类对象
+    //作用：将ProxySubject.outComputer中的这句this.isubject.outComputer();
+    //让他调用真实类中的函数而不是辅助类中的函数
+    //如果将new ProxySubject(new realSubject())中参数变为
+    //new ProxySubject(new ProxySubject()) 则会发生编译出错。
+}
+
+class TestDamo1{
+    public static void main(String[] args) {
+
+        Isubject subject =  Factry.getInstance();
+        subject.outComputer();
+        //生成Isubject类对象并让其调用辅助类中的成员方法
+    }
+}
