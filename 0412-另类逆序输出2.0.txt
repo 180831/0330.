@@ -1,0 +1,49 @@
+例如： i am boy --> boy am i
+import java.util.Arrays;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-04-12
+ * Time:14:54
+ */
+public class Test4 {
+        public static String reverseSentence(String str) {
+            char[] arr = str.toCharArray();     //将目标字符串转换为字符数组
+            // System.out.println(Arrays.toString(arr));
+            char[] str1 = new char[arr.length]; //定义一个等长的字符数组存储新的数组
+            for (int i = 0; i < arr.length; i++) {  //先将目标字符数组逆序存储到新数组中
+                str1[arr.length - 1 - i] = arr[i];
+
+            }
+            // System.out.println(Arrays.toString(str1));
+            int count = 0;                      //定义一个计数器，计算遇到" "字符前有几个字符
+            char[] str2 = str1.clone();         //深拷贝字符数组str1到str2中(修改str2不影响str1的值)
+            for (int i = 0; i < str1.length; i++) {
+                if (str1[i] != ' ') {           //判断当前数组元素是否为" "，不是则计数器+1
+                    count++;
+                } else {                        //遇到了" ",将" "之前的数组元素逆序赋值给str2
+                    int k = 0;
+                    //k 的作用是计算需要进行逆序元素的个数
+                    //注意此时的i值不变，进入下面的循环时，i值为" "字符的下标
+                    for (int j = i - count; j < i; j++) {
+                        if (k < count) {
+                            str2[j] = str1[i - 1 - k];
+                            k++;
+                            continue;
+                        }
+                    }
+                    count = 0;                  //当前" "之前的元素已经逆序完成，计数器清零
+                }
+            }
+            //  System.out.println(Arrays.toString(str2));
+            String str3 = new String(str2);
+            return str3;
+        }
+
+    public static void main(String[] args) {
+        System.out.println(reverseSentence("i am boy"));
+        //有需要的话可以将方法中的注释输出函数放开会更有效地理解代码的过程。
+    }
+}
