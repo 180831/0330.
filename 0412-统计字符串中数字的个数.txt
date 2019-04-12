@@ -1,0 +1,23 @@
+/*2、统计字符串中数字个数
+//如："abc21b416u" ===>  输出5
+        函数原型：
+public static int isNumeric(String str){
+
+        }*/
+
+public class Test2 {
+    public static int isNumeric(String str){
+        char[] arr = str.toCharArray();     //将目标字符串转换为字符数组
+        int count = 0;                      //定义计数器计算数组中数字的个数
+        for (int i = 0; i < arr.length; i++) {     //遍历字符数组
+            if((int)arr[i] >= 48 && (int)arr[i] <= 57){
+                //获取当前元素的ascii值判断是否在数字0~9的ascii值之间
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isNumeric("aaaa12445aav"));
+    }
