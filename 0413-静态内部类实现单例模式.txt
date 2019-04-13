@@ -1,0 +1,25 @@
+//请使用静态内部类实现一个单例模式
+public class Person {
+
+    private Person(){
+
+    }
+
+    private static class Single{
+        public static Person person = new Person();
+
+    }
+
+    public static Person getInsterson(){
+
+        return Single.person;
+    }
+
+    public void fun(){
+        System.out.println("nice");
+    }
+    public static void main(String[] args) {
+        Person person = Person.getInsterson();
+        person.fun();
+    }
+}
