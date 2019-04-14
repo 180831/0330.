@@ -1,0 +1,30 @@
+import java.util.Arrays;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-04-14
+ * Time:20:12
+ */
+public class Test4 {
+    //字符串拆分方法
+    // 注意的是 * ^ : \ | . 这6个字符的实现必须使用\
+    // 而\的实现又需要\，所以一会为\\* 实现对*的分割
+    public static void main(String[] args) {
+        String str = "hello boy hello girl";
+        String str1 = "hello*boy*hello*girl";
+        String str2 = "hello^boy^hello^girl";
+        String[] pop = str.split(" ");
+        String[] pop2 = str1.split("\\*");
+        String[] pop3 = str2.split("\\^");
+        //以空格字符拆分字符串并存储在数组中
+
+        String[] pop1 = str.split(" ",3);
+        //以空格字符拆分字符串并存储在数组中，长度可设置
+        System.out.println(Arrays.toString(pop));
+        System.out.println(Arrays.toString(pop1));
+        System.out.println(Arrays.toString(pop2));
+        System.out.println(Arrays.toString(pop3));
+    }
+}
