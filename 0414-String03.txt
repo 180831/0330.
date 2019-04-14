@@ -1,0 +1,34 @@
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-04-14
+ * Time:19:53
+ */
+public class Test3 {
+    public static void main(String[] args) {
+        String str = "abcdefgh";
+        System.out.println(str.contains("de"));     //true
+        //判断一个字符串是否存在
+        System.out.println(str.indexOf("cd"));      //2
+        //从开始位置查找字符串，如果存在则返回起始下标，不存在则返回-1
+        System.out.println(str.indexOf("ef",3));    //4
+        //从指定位置开始查找字符串位置
+        System.out.println(str.lastIndexOf("bc"));  //1
+        //右后向前查找子字符串位置
+        System.out.println(str.lastIndexOf("ab",5)); //0
+        //从指定位置右后向前查找子字符串位置
+        System.out.println(str.startsWith("ab"));   //true
+        //判断字符串是否以指定字符串开头
+        System.out.println(str.startsWith("de",4)); //false
+        //从指定位置开始判断字符串是否以指定字符串开头
+        System.out.println(str.endsWith("fgh"));    //true
+        //判断字符串是否以指定字符串结尾
+        String pop = "hello lucky";
+        System.out.println(pop.replaceFirst("l","w"));
+        //替换首个指定内容      hewlo lucky
+        System.out.println(pop.replaceAll("l","w"));
+        //替换全部的指定内容     hewwo wucky
+    }
+
+}
