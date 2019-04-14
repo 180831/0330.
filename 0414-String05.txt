@@ -1,0 +1,28 @@
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-04-14
+ * Time:20:26
+ */
+public class Test5 {
+    public static void main(String[] args) {
+        //字符串截取方法
+        String str = "asdfghjk";
+        String str1 = " Light long Light sanye ";
+        System.out.println(str.substring(5));
+        //从指定位置开始截取直到结尾
+        System.out.println(str.substring(0,4));
+        //从指定区间截取内容，遵循左闭右开原则即[0,4)
+        System.out.println(str1.trim());
+        //去掉字符串的左右空格
+        System.out.println(str1.toUpperCase());
+        //字符串转为大写
+        System.out.println(str1.toLowerCase());
+        //字符串转为小写
+        System.out.println(str.concat(str1));
+        //字符串的连接，等于+的作用，不会放入池中
+        System.out.println(str.isEmpty());
+        //判断字符串是否为空
+    }
+}
