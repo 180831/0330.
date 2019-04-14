@@ -1,0 +1,30 @@
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-04-14
+ * Time:19:07
+ */
+public class Test2 {
+    public static void main(String[] args) {
+        String str = "abcd123";
+        String arr = "abcD123";
+        char[] str1 = str.toCharArray();        //将字符串转为字符数组
+        char[] str2 =  {'z','a','c','s','f'};
+        String str3 = new String(str2);         //将目标数组转为字符串
+        String str4 = new String(str2,1,4);
+        //将目标数组从下标1到4转为字符串
+        System.out.println(Arrays.toString(str1));
+        System.out.println(str3);
+        System.out.println(str4);
+        System.out.println(str.charAt(3));  //取得当前字符串下标的字符
+        System.out.println(str.equals(arr));    //有符号比较
+        System.out.println(str.equalsIgnoreCase(arr));  //无符号比较
+        System.out.println(str.compareTo(arr)); //比较两个字符串的大小关系
+    }
+}
