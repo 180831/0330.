@@ -1,0 +1,38 @@
+class Solution {
+    
+    public int[] plusOne(int[] digits) {
+        if(digits[digits.length - 1] != 9){
+            digits[digits.length - 1] = digits[digits.length - 1] + 1;
+            return digits;
+        }
+        else{
+            int count = 0;
+            for(int i = digits.length - 1;i >= 0;i--){
+                if(digits[i] == 9){
+                    count++;
+                }
+                else{
+                    break;
+                }
+            }
+            if(count == digits.length){
+                    int[] digits2 = Arrays.copyOf(digits,digits.length + 1);
+                    for(int i = digits2.length - 1;i > 0;i--){
+                        digits2[i] = 0;
+                    }
+                    digits2[0] = 1;
+                    return digits2;
+            }
+            else{
+                for(int j = digits.length - 1;j > digits.length - 1 - count;j--){
+                digits[j] = 0;
+                }
+        
+            digits[digits.length - 1 -count] = digits[digits.length - 1 -count] + 1;     
+            return digits;   
+            }
+    
+        }
+        
+    }
+}
