@@ -1,0 +1,23 @@
+ public int remove(int key) {
+        //write
+
+        int olddata = 0;
+        Node pre = searchPre(key);
+
+        if(pre == null){
+
+            throw new UnsupportedOperationException("不存在key节点");
+        }
+        //是头结点的时候
+        if(pre == this.head && pre.data == key){
+            olddata = this.head.data;
+            this.head = this.head.next;
+            return olddata;
+        }
+        //第三种情况，在里面删除
+
+        Node del = pre.next;
+        olddata = del.data;
+        pre.next = pre.next.next;
+        return olddata;
+    }
