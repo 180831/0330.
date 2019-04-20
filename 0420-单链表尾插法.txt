@@ -1,0 +1,15 @@
+public void addLast(int data) {
+        //write
+        Node cur = this.head;       //cur为一个整体系节点
+        Node node = new Node(data);
+        //第一次插入的时候，没有任何的数据节点
+        if(this.head == null) {
+            this.head = node;
+        }else{
+            while(cur.next != null){
+                cur = cur.next;
+            }
+            //cur所指向的位置为尾结点
+            cur.next = node;
+        }
+    }
