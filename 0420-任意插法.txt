@@ -1,0 +1,35 @@
+//检查Index的合法性
+    private void checkindex(int index){
+        if(index < 0 || index > getLength()){
+            throw new UnsupportedOperationException("不支持的操作异常");
+            //index不合法
+        }
+    }
+
+    //找到Index-1的位置，函数返回该位置的节点引用
+    private Node searchIndex(int index){
+        Node cur = this.head;
+        int count = 0;
+        while(count < (index - 1)){
+            cur = cur.next;
+            count++;
+        }
+        return cur;
+    }
+
+
+    public boolean addIndex(int index, int data) {
+
+        //任意位置插入,第一个数据节点为0号下标
+        checkindex(index);
+        //头插法
+        if(index == 0){
+            addFirst(data);
+            return true;
+        }
+        Node node = new Node(data);
+        Node cur = searchIndex(index);
+        node.next = cur.next;
+        cur.next = node;
+        return true;
+    }
