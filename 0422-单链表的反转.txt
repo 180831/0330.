@@ -1,0 +1,15 @@
+    public Node reverList(){
+        Node cur = this.head;
+        Node rever = null;
+        Node prev = null;
+        while(cur != null){
+            Node curNext = cur.next;
+            if(curNext == null){
+                rever = cur;
+            }
+            cur.next = prev;
+            prev = cur;
+            cur = curNext;
+        }
+        return rever;
+    }
