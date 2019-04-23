@@ -1,0 +1,22 @@
+//删除相同的节点
+    public Node Delete(){
+        Node tmpHead = new Node(-1);
+        Node newHead = tmpHead;
+        Node cur = this.head;
+        while(cur != null){
+            if(cur.next != null &&
+                    cur.data == cur.next.data){
+                while(cur.next != null &&
+                        cur.data == cur.next.data){
+                    cur = cur.next;
+                }
+                tmpHead.next = cur;
+            }else{
+                tmpHead.next = cur;
+                tmpHead = cur;
+                cur = cur.next;
+            }
+
+        }
+        return newHead.next;
+    }
