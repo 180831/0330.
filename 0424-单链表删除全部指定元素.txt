@@ -1,0 +1,17 @@
+public void removeAllKey(int key) {
+        if(this.head == null){
+            return;
+        }
+        Node cur = this.head;       //记录当前判断的位置
+        if(cur.data == key){        //判断头节点是否为需要删除的节点
+            this.head = cur.next;
+
+        }
+        while(cur.next != null){    //当前位置是否为单链表的最后一个节点
+            if(cur.next.data == key){       //如果下一个节点的数据为删除目标
+                cur.next = cur.next.next;   //删除这一个节点
+                continue;
+            }
+            cur = cur.next;         //下一个节点的数据不是删除目标则保留，cur后移
+        }
+    }
