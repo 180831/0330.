@@ -1,0 +1,13 @@
+public boolean contains(int key) {
+        //write
+        Node cur = this.head;
+        while(cur != null){
+
+            if(cur.data == key){
+                return true;
+            }
+            cur = cur.next;
+        }
+
+        return false;
+    }
