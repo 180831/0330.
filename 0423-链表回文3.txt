@@ -1,0 +1,37 @@
+//判断链表是否为回文结构(反转一半)
+    public boolean rewen(){
+        Node cur = this.head;
+        Node fast = this.head;
+        Node slow = this.head;
+        if(this.head == null){
+            return false;
+        }
+        while(fast != null && fast.next != null){
+
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        Node pre = slow.next;
+        Node preNext = pre.next;
+        if(p != null){
+        while(pre != null){ //从中间之后反转链表(奇数节点)
+            pre.next = slow;
+            slow = pre;
+            pre = preNext;
+            if(pre != null){
+                preNext = pre.next;
+            }
+        }
+        }
+        while(cur != slow){
+            if(cur.data != slow.data){
+                return false;
+            }
+            if(cur.next == slow){
+                return true;
+            }
+            cur = cur.next;
+            slow = slow.next;
+        }
+        return true;
+    }
