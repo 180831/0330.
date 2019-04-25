@@ -13,6 +13,7 @@
         }
         Node pre = slow.next;
         Node preNext = pre.next;
+
         while(pre != null){ //从中间之后反转链表(奇数节点)
             pre.next = slow;
             slow = pre;
