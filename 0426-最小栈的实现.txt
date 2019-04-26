@@ -1,0 +1,84 @@
+class MinStack {
+    private int[] elem;
+    private int usedSize;
+    private int top;
+    private int use;
+    private int count;
+    /** initialize your data structure here. */
+    public MinStack() {
+        elem = new int[10];
+        usedSize = 0;
+        top = 0;
+        use = 0;
+    }
+    
+    public boolean empty(){
+        if(usedSize == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    public void push(int x) {
+        elem[top] = x;
+        top++;
+        usedSize++;
+    }
+    
+    public void pop() {
+        if(empty()){
+            return;
+        }
+        if(top() == getMin()){
+            use--;
+        }
+        top--;
+        usedSize--;
+    }
+
+    
+    public int top() {
+        return elem[top - 1];
+    }
+    
+    public int getMin() {
+        if(empty()){
+            return -1;
+        }
+        Stack<Integer> myStack1 = new Stack<>();
+        int top2 = top;
+        
+        for(int i = 0;i < usedSize;i++){
+            
+            int temp = elem[top2];
+            
+            if(myStack1.empty()){
+                myStack1.push(temp);
+                
+            }else{
+                while(use != count){
+                    myStack1.pop();
+                }
+                
+                if(temp < myStack1.peek()){
+                    myStack1.push(temp);
+                    use++;
+                    count++;
+                }
+            }
+            top2--;
+            
+        }
+        
+        return myStack1.peek();
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
