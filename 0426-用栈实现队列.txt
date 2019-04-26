@@ -1,0 +1,62 @@
+class MyQueue {
+    Stack<Integer> myStack1 = new Stack<>();
+    Stack<Integer> myStack2 = new Stack<>();
+    private int usedSize;
+    /** Initialize your data structure here. */
+    public MyQueue() {
+       usedSize = 0;
+    }
+    
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        myStack1.push(x);
+        usedSize++;
+    }
+    
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        if(myStack2.empty()){
+            while(!myStack1.empty()){
+                int temp = myStack1.pop();
+                myStack2.push(temp);
+            }   
+        }
+        if(myStack2.empty()){
+            return -1;
+        }
+         usedSize--;
+        return myStack2.pop();
+       
+    }
+    
+    /** Get the front element. */
+    public int peek() {
+        if(myStack2.empty()){
+            while(!myStack1.empty()){
+                int temp = myStack1.pop();
+                myStack2.push(temp);
+            }   
+        }
+        if(myStack2.empty()){
+            return -1;
+        }
+        return myStack2.peek();
+    }
+    
+    /** Returns whether the queue is empty. */
+    public boolean empty() {
+        if(usedSize == 0){
+            return true;
+        }
+        return false;
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
