@@ -1,0 +1,14 @@
+   //查找排序
+    public static void selectSort(int[] arr){//选择排序 不稳定 有跳跃式交换
+        for (int i = 0; i <arr.length ; i++) {
+            int j = 0;                       //时间复杂度为O(N^2)
+            int temp = 0;
+            for (j = i + 1;j <arr.length; j++){
+                if(arr[j] < arr[i]){
+                    temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+    }
