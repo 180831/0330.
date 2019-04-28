@@ -1,0 +1,26 @@
+ //一次快速排序(递归实现) 时间复杂度N
+    public static int partion(int[] arr,int low,int hight){
+        int temp = arr[low];
+        while(low < hight){
+            while (low < hight && arr[hight] >= temp){
+                hight--;
+            }
+            if(low == hight){
+                break;
+            }else{
+                arr[low] = arr[hight];
+            }
+
+       while(low < hight && arr[low] <= temp){
+                low++;
+            }
+            if(low == hight){
+                break;
+            }else{
+                arr[hight] = arr[low];
+            }
+        }
+
+        arr[low] = temp;
+        return low;
+    }
