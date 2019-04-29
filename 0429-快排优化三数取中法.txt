@@ -1,0 +1,21 @@
+ //快排优化之三数取中法
+    public static void swap(int[] arr,int low,int high){
+        int temp = arr[low];
+        arr[low] = arr[high];
+        arr[high] = temp;
+    }
+
+
+    public static void meedofThree(int[] arr,int low,int high){
+        int mid = (low + high)>> 1;
+        //arr[mid] <= arr[low] <= arr[high];
+        if(arr[mid] > arr[low]){
+            swap(arr,mid,low);
+        }
+        if(arr[mid] > arr[high]){
+            swap(arr,mid,high);
+        }
+        if(arr[low] > arr[high]){
+            swap(arr,low,high);
+        }
+    }
