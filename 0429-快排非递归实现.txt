@@ -1,0 +1,33 @@
+ //快排非递归实现(使用栈完成)
+    public static void quickUnRecursion(int[] arr){
+        int[] stack = new int[arr.length * 2];
+        int top = 0;
+        int low = 0;
+        int high = arr.length - 1;
+        //先进行一次快排
+        int par = partion(arr,low,high);
+        //1.判断当前par左右两边是否有两个数据以上
+        if(par > low + 1){
+            stack[top++] = low;
+            stack[top++] = par - 1;
+        }
+        if(par < high - 1){
+            stack[top++] = par + 1;
+            stack[top++] = high;
+        }
+        //以上代码执行完毕，两边的数对已将全部入栈
+        //判断栈是否为空，不为空取出两个数对，进行partion()
+        while(top > 0){
+            high = stack[--top];
+            low = stack[--top];
+            par = partion(arr,low,high);
+            if(par > low + 1){
+                stack[top++] = low;
+                stack[top++] = par - 1;
+            }
+            if(par < high - 1){
+                stack[top++] = par + 1;
+                stack[top++] = high;
+            }
+        }
+    }
