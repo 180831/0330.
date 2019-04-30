@@ -1,0 +1,67 @@
+ public static void quick(int[] array,int low,
+                             int high){
+        if(low == high){
+            return;
+        }
+        //1 2 3 4 5 6 7
+        if(high-low+1 <= 10){
+            insertSort1(array,low,high);
+        }
+
+        takeThreeNumber(array,low,high);
+
+        int par = partion(array,low,high);
+        //递归左边---》保证左边有两个数据以上
+        if(par > low+1){
+            quick(array,low,par-1);
+        }
+        //递归右边
+        if(par < high-1){
+            quick(array,par+1,high);
+        }
+    }
+
+    /**
+     * 时间复杂度：nlog2n
+     * 空间复杂度：log2n
+     * 稳定性：不稳定
+     * @param array
+     */
+
+    public static void quickSort1(int[] array) {
+        long start = System.nanoTime();//纳秒
+        quick(array,0,array.length-1);
+        long end = System.nanoTime();//纳秒
+        System.out.println("选择排序："+(end-start)+"纳秒");
+    }
+
+    public static void quickSort(int[] array) {
+        int[] stack = new int[array.length*2];
+        int top = 0;
+
+        int low = 0;
+        int high = array.length-1;
+        int par = partion(array,low,high);
+        //左边有两个数据元素以上
+        if(par > low+1){
+            stack[top++] = low;
+            stack[top++] = par-1;
+        }
+        if(par < high-1){
+            stack[top++] = par+1;
+            stack[top++] = high;
+        }
+        while (top > 0) {
+            high = stack[--top];
+            low = stack[--top];
+            par = partion(array,low,high);
+            if(par > low+1){
+                stack[top++] = low;
+                stack[top++] = par-1;
+            }
+            if(par < high-1){
+                stack[top++] = par+1;
+                stack[top++] = high;
+            }
+        }
+    }
