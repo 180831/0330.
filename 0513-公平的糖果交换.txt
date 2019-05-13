@@ -1,0 +1,26 @@
+class Solution {
+    public int[] fairCandySwap(int[] A, int[] B) {
+        int sum_A=0;
+        int sum_B=0;
+        int[] set=new int[100001];
+        for(int i=0;i<A.length;i++){
+            set[A[i]]=1;
+            sum_A+=A[i];
+        }
+        for(int i=0;i<B.length;i++){
+            sum_B+=B[i];
+        }
+        int temp=(sum_A-sum_B)/2;
+        int[] res=new int[2];
+        for(int i=0;i<B.length;i++){
+            if(B[i]+temp<=0||B[i]+temp>=set.length)continue;
+            if(set[B[i]+temp]!=0){
+                res[0]=B[i]+temp;
+                res[1]=B[i];
+                break;
+            }
+        }
+        return res;
+    }
+    
+}
