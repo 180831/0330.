@@ -1,0 +1,22 @@
+class Solution {
+    public int dominantIndex(int[] nums) {
+        int[] max_index=new int[2];
+        max_index[0]=Integer.MIN_VALUE;
+        max_index[1]=-1;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>max_index[0]){
+                max_index[0]=nums[i];
+                max_index[1]=i;
+            }
+        }
+        //最大值以及index
+        for(int i=0;i<nums.length;i++){
+            if(i!=max_index[1]){
+                if(max_index[0]<nums[i]*2){
+                    return -1;
+                }
+            }
+        }
+        return max_index[1];
+    }
+}
