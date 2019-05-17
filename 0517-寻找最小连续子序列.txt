@@ -1,0 +1,29 @@
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        //先备份，再排序
+        //正向寻找第一个不同的数字，再反向找第一个不同的数字
+       int[] nums_copy=nums.clone();
+		Arrays.sort(nums_copy);
+		int i=0,j=0;
+		for(int m=0;m<nums.length;m++)
+		{
+			if(nums_copy[m]!=nums[m])
+			{
+				i=m;
+				break;
+			}
+		}
+		for(int m=nums.length-1;m>=0;m--)
+		{
+			if(nums_copy[m]!=nums[m])
+			{
+				j=m;
+				break;
+			}
+		}
+        if(i==0 && j==0)
+            return 0;
+        
+		return j-i+1;
+    }
+}
