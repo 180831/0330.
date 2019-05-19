@@ -1,0 +1,230 @@
+package www.bit.java.testthread;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-05-19
+ * Time:15:51
+ */
+//题目描述：通过反射赋值源对象中的属性值到目标对象的具有相同类型和名称的属性
+
+
+public class BeanUtils {
+
+    /**
+     * 对象的属性值拷贝
+     * <p>
+     * 将source对象中的属性值赋值到target对象中的属性，属性名一样，类型一样
+     * <p>
+     * example:
+     * <p>
+     * source:
+     * <p>
+     * String name;
+     * String address;
+     * Integer age;
+     * Date   birthday;
+     * <p>
+     * target:
+     * String name;
+     * String address;
+     * String email
+     * <p>
+     * 结果： source name, address -> target name, address
+     * <p>
+     * //@param source
+     * //@param target
+     */
+
+    class source {
+
+        private String name;
+        private String address;
+        private Integer age;
+        private Date birthday;
+
+        public source() {
+
+        }
+
+        public source(String name, String address,
+                      Integer age, Date birthday) {
+            this.name = name;
+            this.address = address;
+            this.birthday = birthday;
+            this.age = age;
+
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public Integer getAge() {
+            return age;
+        }
+
+        public Date getBirthday() {
+            return birthday;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+
+        public void setBirthday(Date birthday) {
+            this.birthday = birthday;
+        }
+
+        @Override
+        public String toString() {
+            return "source{" +
+                    "name='" + name + '\'' +
+                    ", address='" + address + '\'' +
+                    ", age=" + age +
+                    ", birthday=" + birthday +
+                    '}';
+        }
+
+    }
+
+    class target {
+
+        private String name;
+        private String address;
+        private String email;
+
+        public target() {
+
+        }
+
+        public target(String name, String address, String email) {
+            this.address = address;
+            this.name = name;
+            this.email = email;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        @Override
+        public String toString() {
+            return "target{" +
+                    "name='" + name + '\'' +
+                    ", address='" + address + '\'' +
+                    ", email='" + email + '\'' +
+                    '}';
+        }
+    }
+
+    public static void copy(Object source, Object target) {
+        List<String> list_s = new ArrayList<>();
+        List<String> list_t = new ArrayList<>();
+        //获取s的Class对象
+        Class clss = source.getClass();
+        //获取t的Class对象
+        Class clst = target.getClass();
+        //获取s中所有属性，并加入到集合list_s中
+        Field[] fields = clss.getDeclaredFields();
+        for(Field ff : fields){
+            list_s.add(ff.getName());
+        }
+        //获取t中所有属性，并加入到集合list_t中
+        Field[] fieldt = clst.getDeclaredFields();
+        for(Field ff : fieldt){
+            list_t.add(ff.getName());
+        }
+        //遍历list_t集合，在list_s集合中查找是否含有t的属性，包含判断属性类型是否相同，相同赋值
+        for(String ss : list_t){
+            if(list_s.contains(ss)&&isEqualFieldType(source,target,ss)){
+                sCopyt(source,target,ss);
+            }
+        }
+
+    }
+
+    //判断二者属性类型是否相同
+    public static boolean isEqualFieldType(Object o1,Object o2,String s){
+        Class cls1 = o1.getClass();
+        Class cls2 = o2.getClass();
+        try {
+            Field f1 = cls1.getDeclaredField(s);
+            Field f2 = cls2.getDeclaredField(s);
+            if(f1.getType().getName().equals(f2.getType().getName())){
+                return true;
+            }
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
+
+    //将s中的属性值赋给t的属性值
+    public static void sCopyt(Object o1,Object o2,String s){
+        Class cls1 = o1.getClass();
+        Class cls2 = o2.getClass();
+        try {
+            //获取对应的属性对象
+            Field f1 = cls1.getDeclaredField(s);
+            Field f2 = cls2.getDeclaredField(s);
+            //设置可见性
+            f1.setAccessible(true);
+            f2.setAccessible(true);
+            //利用get和set方法进行赋值
+            f2.set(o2,f1.get(o1));
+        }  catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+class Test {
+    public static void main(String[] args) {
+
+    }
+}
+
