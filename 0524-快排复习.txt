@@ -1,0 +1,34 @@
+ public static int quick1(int[] nums,int low,int high){
+        int temp = nums[low];
+        while(low < high){
+            while(low < high && nums[high] > temp){
+
+                high--;
+            }
+            if(low < high){
+                nums[low] = nums[high];
+                low++;
+            }
+
+            while(low < high && nums[low] < temp){
+
+                low++;
+            }
+            if(low < high){
+                nums[high] = nums[low];
+                high--;
+            }
+
+        }
+        nums[low] = temp;
+        return low;
+    }
+
+    public static void quick1Sort(int[] nums,int low,int high){
+        if(low >= high){
+            return;
+        }
+        int str = quick1(nums,low,high);
+        quick1Sort(nums,low,str - 1);
+        quick1Sort(nums,str + 1,high);
+    }
