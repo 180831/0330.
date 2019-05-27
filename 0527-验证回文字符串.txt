@@ -1,0 +1,41 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        StringBuffer str = new StringBuffer();
+
+
+        int high1 = s.length();
+
+        for(int i = 0;i < high1;i++){
+            char temp = s.charAt(i);
+            if( ('a' <= temp  &&  temp <= 'z')
+                    || ('A' <= temp  &&  temp <= 'Z')
+                    || ('0' <= temp &&  temp  <= '9')
+                    ){
+                str.append(s.charAt(i));
+            }
+        }
+
+        String str1 = str.toString();
+        
+        str1 = str1.toLowerCase();
+        
+        if(str1.length() != 0){
+            int low = 0;
+            int high = str1.length() - 1;
+        
+            while(low < high){
+                if(str1.charAt(low) == (str1.charAt(high)) && low < high){
+                    low++;
+                    high--;
+                }else{
+                    return false;
+                }
+            }
+            if(low >= high){   
+                
+                   return true;                  
+            }
+        }
+        return true;
+    }
+}
