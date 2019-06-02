@@ -1,0 +1,41 @@
+public static void sort(int[][] array) {
+        for(int i=0;i<array.length-1;i++)//行排序
+            for(int j=0;j<array.length-1-i;j++)
+                if(array[j][0]>array[j+1][0])
+                    swap(array[j],array[j+1]);
+        for(int f=1;f<array[0].length;f++)//f为当前要排序的列
+            for(int i=0;i<array.length;) {
+                int count=0;
+                int num=array[i][f-1];
+                if(f==1) {
+                    for(int j=0;j<array.length;j++)
+                        if(array[j][0]==num)
+                            count++;
+                }
+                else {//第一列以外的列 要统计该列之前所有列都和上一行相同的行的出现次数来决定该轮还要排序的次数
+                    for(int j=0;j<array.length;j++) {
+                        boolean isSame=true;
+                        for(int p=1;p<=f;p++)
+                            if(array[j][f-p]!=array[i][f-p]) {
+                                isSame=false;
+                                break;
+                            }
+                        if(array[j][f-1]==num&&isSame)
+                            count++;
+                    }
+                }
+                for(int k=0;k<count-1;k++)
+                    for(int q=0;q<count-1-k;q++)
+                        if(array[i+q][f]>array[i+q+1][f])
+                            swap(array[i+q],array[i+q+1]);
+                i+=count;//i为下一个不同的数的行下标
+            }
+    }
+    public static void swap(int[] a,int[] b) {//交换一行
+        int temp;
+        for(int j=0;j<a.length;j++) {
+            temp=a[j];
+            a[j]=b[j];
+            b[j]=temp;
+        }
+    }
