@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表格标签</title>
+<!--
+	table:表格标签
+		属性：
+			border：边框大小（px）
+			align：在浏览器中显示对其方式
+			bgcolor：背景
+			width/height：(表格宽高：px、百分比)
+			cellspacing:控制单元格和边框之间的空隙
+			
+		作用：表格标签来进行网页布局
+	    
+	    行标签:tr
+	   表头标签：th(自动居中加粗)
+	  单元格标签：td
+	  
+	  	应用：
+	  		合并行：rowspan
+	  		合并列：colspan
+	 
+-->
+
+	</head>
+<body>
+<table border="1px" cellspacing="0" align="center" width="1200px" height="1600px">
+	<tr height="0.1%">
+		<td colspan="3">
+			<table border="1px" width="100%" cellspacing="0" height="100%">
+				<tr align="center">
+					<td>11</td>
+					<td>12</td>
+					<td>13</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr align="center">
+		<td>
+			<!--打锚点-->
+			<a name="top"></a>
+			<a href="#foot">[跳转底部]</a><br />
+			<a href="02_html的文本标签.html#ul" target="_blank">超链接 </a><br />
+			<a href="http://www.baidu.com">跳转百度</a><br />
+			网站内容
+			<br /><br /><br /><br /><br />
+
+			<!--1）打锚点-->
+			<a name="foot"></a><br />
+			<!--跳转链接-->
+			<a href="#top">【返回顶部】</a><br/>
+			页脚部分
+		</td>
+		<td colspan="2">
+			<!--单元格中嵌套表格-->
+			<table border="1px" width="100%" cellspacing="0" height="100%">
+				<tr align="center">
+					<td>11</td>
+					<td>12</td>
+					<td>13</td>
+				</tr>
+				<tr align="center">
+					<td>21</td>
+					<td>22</td>
+					<td>23</td>
+				</tr>
+			</table>
+		</td>
+		
+	</tr>
+	<tr align="center">
+		<td colspan="3">
+			<img  src="img/1.jpg" width="30%" height="150" alt="轮播图" 
+				title="轮播图"/>
+		</td>
+	</tr>
+	<tr align="center">
+		<td colspan="3">
+			<!--单元格中嵌套表格-->
+			<table border="1px" width="100%" cellspacing="0" height="100%">
+				<tr align="center">
+					<td  rowspan="3">
+						<img  src="img/andongni.jpg" width="100%" height="100" alt="安东尼" 
+				title="安东尼"/>
+					</td>
+					<td colspan="2">
+						<img  src="img/baoluo.jpg" width="80%" height="100" alt="保罗" 
+				title="保罗"/>
+					</td>
+					<td>
+						<img  src="img/daiweisi.jpg" width="70%" height="100" alt="戴维斯" 
+				title="戴维斯"/>
+					</td>
+					<td>
+						<img  src="img/dengken.jpg" width="70%" height="100" alt="邓肯" 
+				title="邓肯"/>
+					</td>
+					<td>
+						<img  src="img/dulante.jpg" width="40%" height="80" alt="杜兰特" 
+				title="杜兰特"/>
+					</td>
+					<td>
+						<img  src="img/gelifen.jpg" width="40%" height="80" alt="格里芬" 
+				title="格里芬"/>
+					</td>
+					<td>
+						<img  src="img/hadeng.jpg" width="40%" height="80" alt="哈登" 
+				title="哈登"/>
+					</td>
+				</tr>
+				<tr align="center">
+					<td>
+						<img  src="img/jiasuoer.jpg" width="40%" height="80" alt="加索尔" 
+				title="加索尔"/>
+					</td>
+					<td>
+						<img  src="img/kebi.jpg" width="40%" height="100" alt="科比" 
+				title="科比"/>
+					</td>
+					<td>
+						<img  src="img/kuli.jpg" width="40%" height="80" alt="库里" 
+				title="库里"/>
+					</td>
+					<td>
+						<img  src="img/lunnade.jpg" width="40%" height="80" alt="伦纳德" 
+				title="伦纳德"/>
+					</td>
+					<td>
+						<img  src="img/luosi.jpg" width="40%" height="80" alt="罗斯" 
+				title="罗斯"/>
+					</td>
+					<td>
+						<img  src="img/maidi.jpg" width="40%" height="80" alt="麦迪" 
+				title="麦迪"/>
+					</td>
+					<td>
+						<img  src="img/nuoweisiji.jpg" width="40%" height="80" alt="诺维斯基" 
+				title="诺维斯基"/>
+					</td>
+				</tr>
+				<tr align="center">
+					<td>
+						<img  src="img/owen.jpg" width="40%" height="80" alt="欧文" 
+				title="欧文"/>
+					</td>
+					<td>
+						<img  src="img/qiaozhi.jpg" width="40%" height="80" alt="乔治" 
+				title="乔治"/>
+					</td>
+					<td>
+						<img  src="img/tangpusen.jpg" width="40%" height="80" alt="汤普森" 
+				title="汤普森"/>
+					</td>
+					<td>
+						<img  src="img/weide.jpg" width="40%" height="80" alt="韦德" 
+				title="韦德"/>
+					</td>
+					<td>
+						<img  src="img/weisibuluke.jpg" width="40%" height="80" alt="威斯布鲁克" 
+				title="威斯布鲁克"/>
+					</td>
+					<td>
+						<img  src="img/yaoming.jpg" width="40%" height="80" alt="姚明" 
+				title="姚明"/>
+					</td>
+					<td>
+						<img  src="img/zhanmusi.jpg" width="40%" height="80" alt="詹姆斯" 
+				title="詹姆斯"/>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr align="center">
+		<td colspan="3">
+			<img  src="img/1.jpg" width="30%" height="100"  alt="广告图片" title="广告图片"
+	/>
+		</td>
+	</tr>
+	<tr align="center">
+		<td colspan="3">
+			<table border="1px" width="100%" cellspacing="0" height="100%">
+				<tr align="center">
+					<td>11</td>
+					<td>12</td>
+					<td>13</td>
+					<td>11</td>
+					<td>12</td>
+					<td colspan="2">13</td>
+					<td rowspan="3">13</td>
+				</tr>
+				<tr align="center">
+					<td>11</td>
+					<td>12</td>
+					<td>13</td>
+					<td>11</td>
+					<td>12</td>
+					<td>13</td>
+					<td>13</td>
+				</tr>
+				<tr align="center">
+					<td>11</td>
+					<td>12</td>
+					<td>13</td>
+					<td>11</td>
+					<td>12</td>
+					<td>13</td>
+					<td>13</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr align="center">
+		<td colspan="3">
+			<img  src="img/1.jpg" width="30%" height="130"  alt="正品保证图片" 
+				title="正品保证图片"
+	/>
+		</td>
+	</tr>
+	<tr align="center" height="0.1%">
+		<td colspan="3">
+			Light公司<sup>&copy;</sup> 2019-2020<br />
+			注册商标<sup>&reg;</sup>
+		</td>
+	</tr>
+	
+</table>
+
+</body>
+</html>
