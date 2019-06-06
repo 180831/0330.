@@ -1,0 +1,43 @@
+class Solution {
+    
+    public static int gcd2(int a,int b){
+        int big = a>b?a:b;
+        int small = a<b?a:b;
+        if(big%small == 0){
+            return small;
+        }
+        return gcd2(big%small,small);
+    }
+    
+    public String gcdOfStrings(String str1, String str2) {
+        int len1 = str1.length();
+        int len2 = str2.length();
+        if(len1 >= len2){
+            for(int i = 0;i < len2;i++){
+                if(str1.charAt(i) != str2.charAt(i)){
+                    return "";
+                }
+            }
+        }else{
+            for(int i = 0;i < len1;i++){
+                if(str1.charAt(i) != str2.charAt(i)){
+                    return "";
+                }
+            }
+        }
+        StringBuffer strb = new StringBuffer();
+        int pop = 0;
+
+        if(len1 == len2){
+            return str1;
+        }
+        else{
+            pop = gcd2(len1,len2);
+            for(int i = 0;i < pop;i++){ 
+                strb.append(str2.charAt(i));
+            }
+        }
+        String strc = strb.toString();
+        return strc;
+    }
+}
