@@ -1,0 +1,37 @@
+class Solution {
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int nums = 0;
+        while(nums < flowerbed.length ){
+            if(flowerbed[nums] == 1 && nums == 0  && nums < flowerbed.length - 1){
+                flowerbed[nums + 1] = 2;
+                nums += 2;
+            }
+            else if(flowerbed[nums] == 1 && nums != 0 && nums < flowerbed.length - 1){
+                flowerbed[nums + 1] = 2;
+                flowerbed[nums - 1] = 2;
+                nums += 2;
+            }
+            else if(flowerbed[nums] == 1 &&  nums == flowerbed.length - 1 && flowerbed.length != 1){
+                flowerbed[nums - 1] = 2;
+                nums++;
+            }
+            else{
+                nums++;
+            }
+        }
+        nums = 0;
+        int arr = 0;
+        while(nums < flowerbed.length ){
+            if(flowerbed[nums] == 0){
+                arr++;
+                nums += 2;
+            }else{
+                 nums++;
+            }  
+        }
+        if(arr >= n){
+            return true;
+        }
+        return false;
+    }
+}
