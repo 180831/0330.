@@ -1,0 +1,19 @@
+class Solution {
+    public char findTheDifference(String s, String t) {
+        int[] arr1 = new int[26];
+        int[] arr2 = new int[26];
+        for(int i =0;i < s.length();i++){  
+            arr1[(int)(s.charAt(i) - 'a')]++;
+            arr2[(int)(t.charAt(i) - 'a')]++;
+        }
+        arr2[(int)(t.charAt(t.length() - 1) - 'a')]++;
+        char temp = '0';
+        for(int i = 0;i < 26;i++){
+            if(arr1[i] != arr2[i]){
+                temp =  (char)(i + 'a');
+                break;
+            }
+        }
+        return temp;
+    }
+}
