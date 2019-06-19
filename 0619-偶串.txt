@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class Main {
+    public static int Stringpanduan(String str,int len){
+        StringBuilder str2 = new StringBuilder(str);
+        int temp = 0;
+        while(str2.length() != 0){
+            str2.delete(len - 2,len);
+            len -= 2;
+            int len2 = str2.length();
+            int i = 0;
+            while(i < len2 / 2){
+                if(str2.charAt(i) == str2.charAt(len2 / 2 + i)){
+                    i++;
+                }else{
+                    break;
+                }
+            }
+            if(i == len2 / 2){
+                temp = str2.length();
+                return temp;
+            }
+        }
+    return temp;
+    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String a = in.nextLine();
+        int b = a.length();
+        int arr = Stringpanduan(a,b);
+        System.out.println(arr);
+        
+        
+    }
+}
