@@ -1,0 +1,45 @@
+package www.light.Client;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-06-23
+ * Time:17:37
+ */
+public class WriteDataToServerThread extends Thread{
+    private final Socket socket;
+
+
+
+    public WriteDataToServerThread(Socket socket) {
+        this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+        try {
+            OutputStream out = this.socket.getOutputStream();
+            PrintStream printStream = new PrintStream(out);
+            Scanner scanner =new Scanner(System.in);
+            while (true){
+                System.out.print("ÇëÊäÈë>");
+                String message  =scanner.nextLine();
+                printStream.println(message);
+                printStream.flush();
+                if(message.equals("bye")){
+                    break;
+                }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+}
