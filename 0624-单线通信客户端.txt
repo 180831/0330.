@@ -1,0 +1,33 @@
+package www.light.Client;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Client {
+    public static void main(String[] args) {
+        String host = "127.0.0.1";
+        int port = 4406;
+        try {
+            //连接服务器
+            Socket socket = new Socket(host,port);
+            System.out.println("连接上了服务器，地址为:" + socket.getInetAddress());
+            //获取输出流
+            OutputStream out = socket.getOutputStream();
+            PrintStream printStream = new PrintStream(out);
+            printStream.println("第一次通信，多多指教!");
+            printStream.flush();
+            //输出数据流
+            InputStream in = socket.getInputStream();
+            Scanner scanner = new Scanner(in);
+            System.out.println("来自服务器的数据:" + scanner.nextLine());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
