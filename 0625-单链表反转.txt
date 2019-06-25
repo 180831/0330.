@@ -1,0 +1,16 @@
+ public Node reverseList(Node head) {
+        Node cur = this.head;
+        Node pre = null;
+        Node reverseHead = null;
+        Node curNext;
+        while(cur != null) {
+            curNext = cur.next;
+            if(curNext == null){
+                reverseHead = cur;
+            }
+            cur.next = pre;
+            pre = cur;
+            cur = curNext;
+        }
+        return reverseHead;
+    }
