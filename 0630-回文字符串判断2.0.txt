@@ -1,0 +1,73 @@
+import java.util.Scanner;
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-06-30
+ * Time:19:34
+ */
+public class Main {
+    public  int IsReverseString(String str1,String str2){
+        if(str1.length() == 0 && str2.length() == 0){
+            return 0;
+        }
+        int len = str1.length();
+        int len2 = len + str2.length();
+        char[] str3 = str1.toCharArray();
+        int count = 0;
+        StringBuilder str = new StringBuilder();
+        StringBuilder arr = new StringBuilder();
+        if(len == 0){
+            arr.append(str2);
+            str = str.append(arr);
+            str = str.reverse();
+            if(arr.toString().equals(str.toString())){
+                count++;
+            }
+            return count;
+        }
+        if(str2.length() == 0){
+            arr.append(str1);
+            str = str.append(arr);
+            str = str.reverse();
+            if(arr.toString().equals(str.toString())){
+                count++;
+            }
+            return count;
+        }
+        for (int i = 0; i < len; i++) {
+            str.append(str3,0,i);
+            str.append(str2);
+            str.append(str3,i,len - i);
+            arr.append(str);
+            arr = arr.reverse();
+            if(arr.toString().equals(str.toString())){
+                count++;
+            }
+            str.delete(0,len2);
+            arr.delete(0,len2);
+        }
+        str.append(str1);
+        str.append(str2);
+        arr.append(str);
+        arr = arr.reverse();
+        if(arr.toString().equals(str.toString())){
+            count++;
+        }
+        return count;
+    }
+    public static void main(String[] args) {
+        Main main1 = new Main();
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextLine()) {// 注意，如果输入是多个测试用例，请通过while循环处理多个测试用例
+            String a = in.nextLine();
+            String b = in.nextLine();
+            System.out.println(main1.IsReverseString(a,b));
+        }
+        /*String str1 = "aba";
+        String str2 = "b";
+        Main main = new Main();
+        int pop = main.IsReverseString(str1,str2);
+        System.out.println(pop);*/
+    }
+}
