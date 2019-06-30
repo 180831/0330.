@@ -1,0 +1,25 @@
+class Solution {
+    public int rob(int[] nums) {
+       int sum0 = 0, sum1 = 0;
+        
+        for(int i = 0; i < nums.length; ++i)
+        {
+            if(i % 2 == 0)
+            {
+                sum0 += nums[i];
+                sum0 = Math.max(sum0, sum1);
+            }
+            else
+            {
+                sum1 += nums[i];
+                sum1 = Math.max(sum0, sum1);
+            }
+        }
+        return Math.max(sum0, sum1);  
+    }
+}
+
+很容易想到要不是相邻的话，那么就是奇数和偶数各
+自求和取最大值，但是有点情况不是奇偶最优的，比如
+2，1，1，2这种需要另外一种思路，每次求和将奇数和
+偶数比较取最大值，然后再去相加。
