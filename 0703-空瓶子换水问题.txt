@@ -1,0 +1,49 @@
+package www.light.test;
+
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-03
+ * Time:0:08
+ */
+public class Main {
+    public int BuyWoter(int n){
+        if(n < 3){
+            if(n == 2){
+                return 1;
+            }
+            return 0;
+        }
+        int pop1 = 0;
+        int pop2 = 0;
+        int nums1 = 0;
+        int nums2 = 0;
+        pop1 = n / 3;   //第一次所有的空瓶子可以换几瓶
+        pop2 = n % 3;   //第一次换完之后剩下几个空瓶子
+        nums1 = pop1 + pop2;    //换完汽水之后喝掉 剩下几个空瓶子
+        nums2 = pop1;   //喝了几瓶水
+        while(nums1 >= 3){
+            pop1 = nums1 / 3;
+            pop2 = nums1 % 3;
+            nums1 = pop1 + pop2;
+            nums2 = nums2 + pop1;
+        }
+        if(nums1 == 2){
+            return nums2 + 1;
+        }
+
+        return nums2;
+    }
+
+    public static void main(String[] args) {
+        Main main = new Main();
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextInt()) {// 注意，如果输入是多个测试用例，请通过while循环处理多个测试用例
+            int a = in.nextInt();
+            System.out.println(main.BuyWoter(a));
+        }
+    }
+}
