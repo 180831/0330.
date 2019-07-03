@@ -1,0 +1,45 @@
+package www.light.test;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-01
+ * Time:13:39
+ */
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ * int val;
+ * ListNode next;
+ * ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    
+    public int lengthOfLongestSubstring(String s) {
+        int size, i = 0, j, k, max = 0;
+        size = s.length();
+        for (j = 0; j < size; j++) {
+            for (k = i; k < j; k++)
+                if (s.charAt(k) == s.charAt(j)) {
+                    i = k + 1;
+                    break;
+                }
+            if (j - i + 1 > max)
+                max = j - i + 1;
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+        String str = "aab";
+        Solution solution = new Solution();
+        int pop = solution.lengthOfLongestSubstring(str);
+        System.out.println(pop);
+    }
+}
