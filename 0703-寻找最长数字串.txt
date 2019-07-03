@@ -1,0 +1,55 @@
+package www.light.test;
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-03
+ * Time:14:52
+ */
+public class Main1 {
+    public String MaxStringMath(String str){
+        LinkedList<String> arr = new LinkedList<>();
+        int len = str.length();
+        StringBuilder str1 = new StringBuilder();
+        int i = 0;
+        int count = 0;
+        while(i < len){
+            while(i < len && str.charAt(i) >= '0' && str.charAt(i) <= '9'){
+                str1.append(str.charAt(i));
+                count++;
+                i++;
+            }
+            if(count != 0){
+                arr.add(str1.toString());
+                str1.delete(0,str1.length());
+                count = 0;
+            }else{
+                i++;
+            }
+
+        }
+        String nums1 = "";
+        String nums2 = "";
+        while(!arr.isEmpty()){
+            nums1 = arr.peek();
+            if(nums1.length() > nums2.length()){
+                nums2 = nums1;
+            }
+            arr.removeFirst();
+        }
+        return nums2;
+    }
+
+    public static void main(String[] args) {
+        Main1 main1 = new Main1();
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextLine()) {// 注意，如果输入是多个测试用例，请通过while循环处理多个测试用例
+            String a = in.nextLine();
+            System.out.println(main1.MaxStringMath(a));
+        }
+    }
+}
