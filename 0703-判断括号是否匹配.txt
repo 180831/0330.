@@ -1,0 +1,32 @@
+package www.light.test;
+
+import java.util.Stack;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-03
+ * Time:15:25
+ */
+public class Parenthesis {
+    public boolean chkParenthesis(String A, int n) {
+        // write code here
+        Stack<Character> sta = new Stack<>();
+        for (int i = 0; i < n; i++) {
+            if(A.charAt(i) == '('){
+                sta.push(A.charAt(i));
+            }else if(A.charAt(i) == ')'){
+                if(sta.isEmpty()){
+                    return false;
+                }
+                if(sta.peek() == '('){
+                    sta.pop();
+                }
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+}
