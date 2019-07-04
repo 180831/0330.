@@ -1,0 +1,44 @@
+package www.light.test;
+
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-04
+ * Time:14:51
+ */
+public class Main2 {
+    public int BuyApple(int n){
+        if(n != 6 & n < 8){
+            return -1;
+        }
+        if(n == 8 || n == 6){
+            return 1;
+        }
+        int pop1 = n % 8;
+        int pop2 = n / 8;
+        while(pop2 != 0){
+            if(pop1 % 6 == 0){
+                return pop1 / 6 + pop2;
+            }else{
+                pop1 += 8;
+                pop2--;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Main2 main2 = new Main2();
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextInt()) {// 注意，如果输入是多个测试用例，请通过while循环处理多个测试用例
+            int a = in.nextInt();
+            System.out.println(main2.BuyApple(a));
+        }
+        /*int a = 20;
+        int pop = main2.BuyApple(a);
+        System.out.println(pop);*/
+    }
+}
