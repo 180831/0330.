@@ -1,0 +1,41 @@
+package www.light.test;
+
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-04
+ * Time:15:01
+ */
+public class Main3 {
+    public String ReverseStr(String str1,String str2){
+        char[] arr = str2.toCharArray();
+        StringBuilder str4 = new StringBuilder();
+        int len = str1.length();
+        int len2 = str2.length();
+        for (int i = 0; i < len; i++) {
+            int j = 0;
+            for (j = 0; j < len2; j++) {
+                if(str1.charAt(i) == arr[j]){
+                    break;
+                }
+            }
+            if(j == len2){
+                str4.append(str1.charAt(i));
+            }
+        }
+        return str4.toString();
+    }
+
+    public static void main(String[] args) {
+        Main3 main3 = new Main3();
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextLine()) {// 注意，如果输入是多个测试用例，请通过while循环处理多个测试用例
+            String a = in.nextLine();
+            String b = in.nextLine();
+            System.out.println(main3.ReverseStr(a,b));
+        }
+    }
+}
