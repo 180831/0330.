@@ -1,0 +1,32 @@
+package www.light.test;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-05
+ * Time:17:57
+ */
+import java.util.Stack;
+
+public class Sulution1 {
+    //用栈实现两个队列
+    Stack<Integer> stack1 = new Stack<Integer>();
+    Stack<Integer> stack2 = new Stack<Integer>();
+
+    public void push(int node) {//入队
+        stack1.push(node);
+    }
+    public int pop() {//出队
+        while(!stack2.isEmpty()){
+            return stack2.pop();
+        }
+        while(!stack1.isEmpty()){
+            stack2.add(stack1.pop());
+        }
+        while(!stack2.isEmpty()){
+            return stack2.pop();
+        }
+        return -1;
+    }
+}
