@@ -1,0 +1,69 @@
+package www.light.long1;
+
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-06
+ * Time:19:49
+ */
+public class Main1 {
+    public String FullNums(int a,int b,int c,int d){
+        int pop1 = 0;
+        int pop2 = 0;
+        int pop3 = 0;
+        String str = "No";
+        StringBuilder str1 = new StringBuilder();
+        if(a > 30 || a < -30 || b > 30 || b < -30
+        || c > 30 || c < -30 || d > 30 || d < -30){
+            return str;
+        }
+        if((a + c) % 2 == 0){
+            pop1 = (a + c) / 2;
+        }else{
+            return str;
+        }
+
+        if((b + d) % 2 == 0){
+            pop2 = (b + d) / 2;
+        }else{
+            return str;
+        }
+
+        if((pop2 - b) == (d - pop2)){
+            pop3 = pop2 - b;
+        }else{
+            return str;
+        }
+        if(pop1 > 0 && pop2 > 0 && pop3 > 0){
+            str1.append(pop1);
+            str1.append(" ");
+            str1.append(pop2);
+            str1.append(" ");
+            str1.append(pop3);
+            return str1.toString();
+        }
+        return str;
+    }
+
+    public static void main(String[] args) {
+        Main1 main = new Main1();
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextInt()) {// 注意，如果输入是多个测试用例，请通过while循环处理多个测试用例
+            int a = in.nextInt();
+            int b = in.nextInt();
+            int c = in.nextInt();
+            int d = in.nextInt();
+            String str = main.FullNums(a,b,c,d);
+            System.out.println(str);
+        }
+        /*int a = 1;
+        int b = -2;
+        int c = 3;
+        int d = 4;
+        System.out.println(-2 % 2);
+        System.out.println(main.FullNums(a,b,c,d));*/
+    }
+}
