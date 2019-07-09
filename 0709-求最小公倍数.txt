@@ -1,0 +1,76 @@
+import java.util.ArrayList;
+import java.util.ListIterator;
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-09
+ * Time:13:32
+ */
+public class Main1 {
+    public int MinNumber(int nums1,int nums2){
+        int max = nums1 > nums2 ? nums1 : nums2;
+        int min = nums1 < nums2 ? nums1 : nums2;
+        int count = 1;
+        ArrayList<Integer> list = new ArrayList<>();
+        if(max % min == 0){
+            return max;
+        }
+        for (int i = 2; i < min; i++) {
+            if(max % i == 0 && min % i == 0){
+                list.add(i);
+            }
+        }
+        int max2 = 0;
+        int min2 = 0;
+        /*while(!list.isEmpty()){
+            max2 = max / list.get(0);
+            min2 = min / list.get(0);
+            count *= list.get(0);
+            list.remove(0);
+        }
+        if(max2 != 0 && min2 != 0){
+            count = count * max2 * min2;
+        }else {
+            count = max * min;
+        }
+        return count;*/
+        ListIterator<Integer> listListIterator = list.listIterator();
+        while(listListIterator.hasNext()){
+            max2 = max / listListIterator.next();
+            min2 = min / listListIterator.next();
+            count *= listListIterator.next();
+        }
+        if(max2 != 0 && min2 != 0){
+            count = count * max2 * min2;
+        }else {
+            count = max * min;
+        }
+        return count;
+}
+
+    /*public ArrayList<Integer> Full(ArrayList<Integer> list){
+        return list;
+    }*/
+    public static void main(String[] args) {
+        Main1 main = new Main1();
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()){
+            int nums1 = in.nextInt();
+            int nums2 = in.nextInt();
+            int count = main.MinNumber(nums1,nums2);
+            System.out.println(count);
+        }
+//       ArrayList<Integer> list = new ArrayList<>();
+//       list.add(1);
+//       list.add(2);
+//       ArrayList list1 = main.Full(list);
+//       ListIterator<Integer> listIterator = list1.listIterator();
+//       while(listIterator.hasNext()){
+//           int str = listIterator.next();
+//           System.out.println(str);
+//       }
+    }
+}
