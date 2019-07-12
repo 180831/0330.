@@ -1,0 +1,29 @@
+package www.light;
+
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-12
+ * Time:12:57
+ */
+public class Main1 {
+    public String ReverseNumber(int n){
+        StringBuilder str = new StringBuilder();
+        str.append(n);
+        return str.reverse().toString();
+    }
+
+    public static void main(String[] args) {
+        Main1 main = new Main1();
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()){
+            int pop = in.nextInt();
+            String str = main.ReverseNumber(pop);
+            System.out.println(str);
+        }
+        //System.out.println(main.ReverseNumber(100));
+    }
+}
