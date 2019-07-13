@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-13
+ * Time:16:13
+ */
+public class Main {
+    public int MinNumberFiber(int n){
+        if(n == 0 || n == 1){
+            return 0;
+        }
+        int low = 1;
+        int high = 1;
+        while(high < n){
+            int str = high;
+            high = high + low;
+            low = str;
+        }
+        if(low == n || high == n){
+            return 0;
+        }
+        int pop = Math.min(high - n,n - low);
+        return pop;
+    }
+
+    public static void main(String[] args) {
+        Main main = new Main();
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()){
+            int nums = in.nextInt();
+            int pop = main.MinNumberFiber(nums);
+            System.out.println(pop);
+        }
+        /*int pop = main.MinNumberFiber(15);
+        System.out.println(pop);*/
+    }
+}
