@@ -1,0 +1,27 @@
+//前序遍历
+    void binaryTreePrevOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        System.out.print(root.val + " ");
+        binaryTreePrevOrder(root.left);
+        binaryTreePrevOrder(root.right);
+    }
+    //二叉树的中序遍历
+    void binaryTreeInOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        binaryTreeInOrder(root.left);
+        System.out.print(root.val + " ");
+        binaryTreeInOrder(root.right);
+    }
+    //二叉树的后序遍历
+    void binaryTreePostOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        binaryTreePostOrder(root.left);
+        binaryTreePostOrder(root.right);
+        System.out.print(root.val + " ");
+    }
