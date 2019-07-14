@@ -1,0 +1,29 @@
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-14
+ * Time:19:47
+ */
+import com.sun.org.apache.regexp.internal.RE;
+
+import java.util.*;
+
+public class Exchange {
+    public int[] exchangeAB(int[] AB) {
+        // write code here
+        AB[0] = AB[0] ^ AB[1];
+        AB[1] = AB[1] ^ AB[0];
+        AB[0] = AB[0] ^ AB[1];
+        return AB;
+    }
+
+    public static void main(String[] args) {
+        Exchange exchange = new Exchange();
+        int[] arr = {1,2};
+        int[] arr1 = exchange.exchangeAB(arr);
+        for (int i = 0; i < arr1.length; i++) {
+            System.out.print(arr1[i] + " ");
+        }
+    }
+}
