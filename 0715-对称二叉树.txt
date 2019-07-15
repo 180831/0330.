@@ -1,0 +1,71 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    //交换一个子树的左右节点
+    public TreeNode ExchangeNode(TreeNode root){
+        if(root == null){
+            return null;
+        }
+        if(root != null){
+            TreeNode node = null;
+            node = root.left;
+            root.left = root.right;
+            root.right = node;
+        }
+        ExchangeNode(root.left);
+        ExchangeNode(root.right);
+        return root;
+    }
+    //判断两个子树是否为相同的子树
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+            if(p == null && q != null){
+                return false;   
+            }
+            if(p != null && q == null){
+                return false;   
+            }
+            if(p == null && q == null){
+                return true;   
+            }
+            if(p.val != q.val){
+                return false;   
+            }
+            return isSameTree(q.left,p.left) && isSameTree(q.right,p.right);
+    }
+    //判断树是否为对称二叉树
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+        ExchangeNode(root.right);
+        boolean pop = isSameTree(root.left,root.right);
+        return pop;
+    }
+}
+
+
+给定一个二叉树，检查它是否是镜像对称的。
+
+例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+
+
+但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
+
+    1
+   / \
+  2   2
+   \   \
+   3    3
