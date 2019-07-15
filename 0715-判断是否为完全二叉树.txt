@@ -1,0 +1,25 @@
+//判断一棵树是否是完全二叉树 返回0代表是完全二叉树
+    int binaryTreeComplete(TreeNode root){
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(root != null){
+            queue.offer(root);//比Add更优秀的方法
+        }
+        TreeNode cur = root;
+        while(!queue.isEmpty()){
+            cur = queue.peek();
+            if(cur == null){    //一旦遇到为空的时候就退出去
+                // 遍历队列发现全为空则是完全二叉树，否则不是完全二叉树
+                break;
+            }
+            queue.poll();
+            queue.offer(cur.left);
+            queue.offer(cur.right);
+        }
+        while(!queue.isEmpty()){
+            cur = queue.poll();
+            if(cur != null){    //一旦不是空直接返回不是完全二叉树
+                return -1;
+            }
+        }
+        return 0;
+    }
