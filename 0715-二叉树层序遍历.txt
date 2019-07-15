@@ -1,0 +1,19 @@
+//二叉树的层序遍历
+    void binaryTreeLevelOrder(TreeNode root){
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(root != null){
+            queue.offer(root);//比Add更优秀的方法
+        }
+        TreeNode cur = root;
+        while(!queue.isEmpty()){
+            cur = queue.peek();
+            System.out.print(cur.val + " ");
+            queue.poll();
+            if(cur.left != null) {
+                queue.offer(cur.left);
+            }
+            if(cur.right != null){
+                queue.offer(cur.right);
+            }
+        }
+    }
