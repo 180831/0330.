@@ -1,0 +1,107 @@
+验证尼科彻斯定理，即：任何一个整数m的立方都可以写成m个连续奇数之和。
+
+例如：
+
+1^3=1 
+
+2^3=3+5 
+
+3^3=7+9+11 
+
+4^3=13+15+17+19 
+
+ 
+
+接口说明
+
+原型：
+
+
+ /*
+ 功能: 验证尼科彻斯定理，即：任何一个整数m的立方都可以写成m个连续奇数之和。
+ 原型：
+     int GetSequeOddNum(int m,char * pcSequeOddNum);
+ 输入参数：
+     int m：整数(取值范围：1～100)
+    
+ 返回值：
+     m个连续奇数(格式：“7+9+11”);
+ */
+
+ public String GetSequeOddNum(int m)
+ {
+     /*在这里实现功能*/
+
+     return null;
+ }
+
+ 
+
+ 
+
+输入描述:
+输入一个int整数
+
+输出描述:
+输出分解后的string
+
+示例1
+输入
+复制
+6
+输出
+复制
+31+33+35+37+39+41
+
+package www.light;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-16
+ * Time:15:36
+ */
+public class Main1 {
+    public String GetSequeOddNum(int m){
+        StringBuilder str = new StringBuilder();
+        int nums = (int)Math.pow(m,3);
+        Queue<Integer> queue = new LinkedList<>();
+        int sums = 0;
+        int i = 0;
+        for (i = 1; i < 1000000; i += 2) {
+            queue.offer(i);
+            if(queue.size() > m){
+                sums -= queue.poll();
+            }
+            sums += i;
+            if(sums == nums){
+                break;
+            }
+        }
+        if(i < 1000000){
+            while(!queue.isEmpty()){
+                str.append(queue.poll());
+                if(!queue.isEmpty()){
+                    str.append("+");
+                }
+            }
+        }
+        return str.toString();
+    }
+
+    public static void main(String[] args) {
+        Main1 main = new Main1();
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()){
+            int pop = in.nextInt();
+            String str = main.GetSequeOddNum(pop);
+            System.out.println(str);
+        }
+    }
+}
+
