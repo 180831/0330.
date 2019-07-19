@@ -1,0 +1,64 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int preIndex = 0;
+    public TreeNode buildTreeChild(int[] preorder,  
+                                   int[] inorder, int inbegin, int inend) {
+        TreeNode root = new TreeNode(preorder[preIndex]);
+        int count = -1;
+        for(int i = inbegin;i <= inend;i++){
+            if(preorder[preIndex] == inorder[i]){
+                count = i;
+                break;
+            }
+        }
+        if(count == -1){
+            return null;
+        }
+        preIndex++;
+        root.left = null;
+        root.right = null;
+        if(inbegin <= count - 1){
+            TreeNode left = buildTreeChild(preorder,inorder,inbegin,count - 1);
+            root.left = left;
+        }
+        if(count + 1 <= inend){
+            TreeNode right = buildTreeChild(preorder,inorder,count + 1,inend);
+            root.right = right;
+        }
+        return root;
+    }
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if(preorder.length == 0 || inorder.length == 0){
+            return null;
+        }
+        return buildTreeChild(preorder,inorder,0,inorder.length - 1);  
+        
+    }
+}
+
+根据一棵树的前序遍历与中序遍历构造二叉树。
+
+注意:
+你可以假设树中没有重复的元素。
+
+例如，给出
+
+前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+
+返回如下的二叉树：
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+
