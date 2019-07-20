@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:DNA–Ú¡–
+ * User:Light_Long
+ * Date:2019-07-20
+ * Time:14:56
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            String pop = in.nextLine();
+            int pop1 = Integer.parseInt(pop);
+            //int size = 0;
+            int size1 = 0;
+            int count = 0;
+            int count1 = 0;
+            StringBuilder str2 = new StringBuilder();
+            String arr = "";
+            for (int i = 0; i < str.length(); i++) {
+                char nums = str.charAt(i);
+                str2.append(nums);
+                size1++;
+                if(nums == 'G' || nums == 'C') {
+                    count1++;
+                }
+                if(size1 > pop1) {
+                    if(str2.charAt(0) == 'G'
+                            || str2.charAt(0) == 'C') {
+                        count1--;
+                    }
+                    str2.delete(0,1);
+                    size1--;
+                }
+                if(size1 == pop1 && count1 > count) {
+                    arr = str2.toString();
+                    count = count1;
+                }
+            }
+            System.out.println(arr);
+        }
+
+    }
+}
