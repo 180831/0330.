@@ -1,0 +1,36 @@
+import java.util.Scanner;
+/**
+ * Created with IntelliJ IDEA
+ * Description:最难的问题
+ * User:Light_Long
+ * Date:2019-07-23
+ * Time:21:12
+ */
+public class Main {
+    public static String changeString(String str) {
+        int len = str.length();
+        StringBuilder str1 = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            char pop = str.charAt(i);
+            if(pop == ' ') {
+                str1.append(pop);
+            }else {
+                if((int)pop - 5 < 65) {
+                    str1.append((char)(90 - (65 - ((int)pop - 5)) + 1));
+                }else {
+                    str1.append((char)((int)pop - 5));
+                }
+            }
+        }
+        return str1.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            String pop = changeString(str);
+            System.out.println(pop);
+        }
+    }
+}
