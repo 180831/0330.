@@ -1,0 +1,26 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    TreeNode cur = null;
+    public void flatten(TreeNode root) {
+        if(root == null) {
+            return;
+        }
+        if(cur != null) {
+            cur.right = root;
+            cur.left = null;
+        }
+        cur = root;//cur节点向右子树移动
+        //由于cur节点只记录右子树，类似回溯手段，需要重新拷贝一份进行递归
+        TreeNode copyRight = root.right;
+        flatten(root.left);
+        flatten(copyRight);
+    }
+}
