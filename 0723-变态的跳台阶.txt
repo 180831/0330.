@@ -1,0 +1,12 @@
+public class Solution {
+    public int JumpFloorII(int target) {
+        if(target <= 0) {
+            return -1;
+        }
+        if(target == 1) {
+            return 1;
+        }
+        //前n-1个台阶可以选择在这个上或者不在这个上即一个台阶有2中选项，所以一共有2乘n-1种情况
+        return 1<<(target - 1);
+    }
+}
