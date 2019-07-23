@@ -1,0 +1,53 @@
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
+public class Solution {
+    public ListNode Merge(ListNode list1,ListNode list2) {
+        ListNode root = null;
+        ListNode proot = null;
+        if(list1 == null) {
+            return list2;
+        }
+        if(list2 == null) {
+            return list1;
+        }
+        while(list1 != null && list2 != null) {
+            if(list1.val < list2.val) {
+                ListNode list1Next = list1.next;
+                list1.next = null;
+                if(root == null) {
+                    root = list1;
+                    proot = list1;
+                }else {
+                    root.next = list1;
+                    root = list1;
+                }
+                list1 = list1Next;
+            }else {
+                ListNode list2Next = list2.next;
+                list2.next = null;
+                if(root == null) {
+                    root = list2;
+                    proot = list2;
+                }else {
+                    root.next = list2;
+                    root = list2;
+                }
+                list2 = list2Next;
+            }
+        }
+        if(list1 == null) {
+            root.next = list2;
+        }
+        if(list2 == null) {
+            root.next = list1;
+        }
+        return proot;
+    }
+}
