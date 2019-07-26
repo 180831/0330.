@@ -1,0 +1,35 @@
+import java.util.*;
+
+/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+    public TreeNode(int val) {
+        this.val = val;
+    }
+}*/
+public class Balance {
+    public int MathMax(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int left1 = MathMax(root.left);
+        int right1 = MathMax(root.right);
+        return Math.max(left1,right1) + 1;
+    }
+    public boolean isBalance(TreeNode root) {
+        // write code here
+        if(root == null) {
+            return true;
+        }
+        int nums1 = MathMax(root.left);
+        int nums2 = MathMax(root.right);
+        int nums3 = nums1 - nums2;
+        if(nums3 * nums3 < 2) {
+            return isBalance(root.left) && isBalance(root.right);
+        }else {
+            return false;
+        }
+    }
+}
