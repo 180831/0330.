@@ -1,0 +1,34 @@
+import java.util.*;
+public class Main { 
+    public static int MaxNumber(int a,int b) {
+       int temp = 1;
+       for(int i = 1; i <= a;i++) {
+           if(a % i == 0 && b % i == 0) {
+               temp = i;
+           }
+       }
+       return temp;
+    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int nums1 = in.nextInt();
+            int nums2 = in.nextInt();
+            int[] arr = new int[nums1];
+            for(int i = 0;i < nums1;i++) {
+                arr[i] = in.nextInt();
+            }
+            for(int i = 0;i < nums1;i++) {
+                if(nums2 >= arr[i]) {
+                    nums2 += arr[i];
+                }else {
+                    nums2 += MaxNumber(nums2,arr[i]);
+                }
+            }
+            System.out.println(nums2);
+                
+        }
+    }
+   
+}
+
