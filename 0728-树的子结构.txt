@@ -1,0 +1,26 @@
+import java.util.*;
+public class Solution {
+    public String binaryTreePrevOrderNonR(TreeNode root){
+        StringBuffer sb = new StringBuffer();
+        TreeNode cur = root;
+        Stack<TreeNode> stack1 = new Stack<>();
+        TreeNode top;
+        while (cur != null || !stack1.empty()) {
+            while (cur != null) {
+                sb.append(cur.val);
+                stack1.push(cur);
+                cur = cur.left;
+            }
+            top = stack1.pop();
+            cur = top.right;
+        }
+        return sb.toString();
+    }
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        if(root2==null||root1==null){
+            return false;
+        }
+        return binaryTreePrevOrderNonR(root1).toString().contains(
+        binaryTreePrevOrderNonR(root2).toString());
+    }
+}
