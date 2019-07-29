@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-29
+ * Time:19:59
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str1 = in.nextLine();    //人数
+            String str2 = in.nextLine();    //人名
+            String str3 = in.nextLine();    //投票人数
+            String str4 = in.nextLine();    //投票的具体给谁
+            String[] arr1 = str2.split(" ");
+            String[] arr2 = str4.split(" ");
+            int len1 = arr1.length;
+            int len2 = arr2.length;
+            int j = 0;
+            int count = 0;
+            int[] nums = new int[len1];
+            for (int i = 0; i < len2; i++) {
+
+                for (j = 0; j < len1; j++) {
+                    if(arr2[i].equals(arr1[j])) {
+                        nums[j]++;
+                        break;
+                    }
+                }
+                if(j == len1) {
+                    count++;
+                }
+            }
+            for (int i = 0; i < len1; i++) {
+                System.out.println(arr1[i] + " " + ":" + " " + nums[i]);
+            }
+            System.out.println("Invalid" + " " + ":" + " " + count);
+        }
+    }
+}
