@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] arrgs) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int pop = in.nextInt();
+            int pop2 = pop * pop;
+            int nums1 = 0;
+            int nums2 = 0;
+            int temp = 0;
+            while(pop != 0) {
+                temp = pop % 10;
+                nums1 += temp;
+                pop /= 10;
+            }
+            while(pop2 != 0) {
+                temp = pop2 % 10;
+                nums2 += temp;
+                pop2 /= 10;
+            }
+            System.out.println(nums1 + " " + nums2);
+        }
+    }
+}
