@@ -1,0 +1,65 @@
+import java.util.*;
+import java.text.DecimalFormat;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int n = in.nextInt();
+            int[] arr1 = new int[n];
+            int[] arr2 = new int[n];
+            for(int i = 0;i < n;i++) {
+                arr1[i] = in.nextInt();
+            }
+            for(int i = 0;i < n;i++) {
+                arr2[i] = in.nextInt();
+            }
+            double[] arr3 = new double[n];
+            for(int i = 0;i < n;i++) {
+                int pop = arr2[i];
+                if(pop <= 100 && pop >= 90) {
+                    arr3[i] = 4.0;
+                }
+                if(pop <= 89 && pop >= 85) {
+                    arr3[i] = 3.7;
+                }
+                if(pop <= 84 && pop >= 82) {
+                    arr3[i] = 3.3;
+                }
+                if(pop <= 81 && pop >= 78) {
+                    arr3[i] = 3.0;
+                }
+                if(pop <= 77 && pop >= 75) {
+                    arr3[i] = 2.7;
+                }
+                if(pop <= 74 && pop >= 72) {
+                    arr3[i] = 2.3;
+                }
+                if(pop <= 71 && pop >= 68) {
+                    arr3[i] = 2.0;
+                }
+                if(pop <= 67 && pop >= 64) {
+                    arr3[i] = 1.5;
+                }
+                if(pop <= 63 && pop >= 60) {
+                    arr3[i] = 1.0;
+                }
+                if(pop <= 59) {
+                    arr3[i] = 0;
+                }
+            }
+            int nums = 0;
+            double sums = 0.0;
+            for(int i = 0;i < n;i++) {
+                double temp = 0;
+                nums += arr1[i];
+                temp = arr1[i] * arr3[i];
+                sums += temp;
+            }
+            sums = sums / nums;
+            DecimalFormat format = new DecimalFormat("#.00");
+            String nums7 = format.format(sums);
+            System.out.println(nums7);
+        }
+    }
+}
