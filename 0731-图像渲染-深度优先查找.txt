@@ -1,0 +1,28 @@
+class Solution {
+    private int[][] post = {{-1,0},{1,0},{0,-1},{0,1}};
+    void DFS(int[][] image,int[][] book, int x, int y, int row,int col,int newColor,int oldColor) {
+        //修改颜色
+        image[x][y] = newColor;
+        book[x][y] = newColor;
+        //搜索4个方向
+        for(int i = 0; i < 4;i++) {
+            int nx = x + post[i][0];
+            int ny = y + post[i][1];
+            if(nx >= row || nx < 0 || ny >= col || ny < 0) {
+               continue;
+            }
+            if(image[nx][ny] == oldColor && book[nx][ny] == 0) {
+                DFS(image,book,nx,ny,row,col,newColor,oldColor);
+            }  
+        }
+    }
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        int row = image.length;
+        int col = image[0].length;
+        int oldColor = image[sr][sc];
+        int[][] book = new int[row][col];
+        DFS(image,book,sr,sc,row,col,newColor,oldColor);
+        return image;
+    }
+}
+
