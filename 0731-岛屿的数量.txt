@@ -1,0 +1,37 @@
+class Solution {
+    private int[][] post = {{-1,0},{1,0},{0,-1},{0,1}};
+    
+    void SolveChild(char[][] grid,int[][] book,
+                    int row,int col,int x,int y) {
+        book[x][y] = 1;
+        for(int i = 0; i < 4;i++) {
+            int nx = x + post[i][0];
+            int ny = y + post[i][1];
+            if(nx >= row || nx < 0 || ny >= col || ny < 0) {
+                continue;
+            }
+            if(grid[nx][ny] == '1' && book[nx][ny] == 0) {
+                SolveChild(grid,book,row,col,nx,ny);
+            }
+        }
+    }
+    
+    public int numIslands(char[][] grid) {
+        int row = grid.length;
+        if(row == 0) {
+            return 0;
+        }
+        int col = grid[0].length;
+        int[][] book = new int[row][col];
+        int nums = 0;
+        for(int i =0;i < row;i++) {
+            for(int j = 0;j < col;j++) {
+                if(grid[i][j] == '1' && book[i][j] == 0) {
+                    SolveChild(grid,book,row,col,i,j);  
+                    nums++;
+                }
+            }
+        }
+        return nums;
+    }
+}
