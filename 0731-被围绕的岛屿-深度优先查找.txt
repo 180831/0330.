@@ -1,0 +1,51 @@
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-07-31
+ * Time:15:01
+ */
+class Solution {
+    private int[][] post = {{-1,0},{1,0},{0,-1},{0,1}};
+    void SolveChild(char[][] board,int[][] book,
+                    int row,int col,int x,int y) {
+        board[x][y] = 'C';
+        for(int i = 0; i < 4;i++) {
+            int nx = x + post[i][0];
+            int ny = y + post[i][1];
+            if(nx >= row || nx < 0 || ny >= col || ny < 0) {
+                continue;
+            }
+            if(board[nx][ny] == 'O' && book[nx][ny] == 0) {
+                SolveChild(board,book,row,col,nx,ny);
+            }
+        }
+    }
+
+    public void solve(char[][] board) {
+        int row = board.length;
+        if(row == 0) {
+            return;
+        }
+        int col = board[0].length;
+        int[][] book = new int[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if(i == 0 || i == row - 1 || j == 0 || j == col - 1) {
+                    if(board[i][j] == 'O') {
+                        SolveChild(board,book,row,col,i,j);
+                    }
+                }
+            }
+        } 
+        for(int i =0;i < row;i++) {
+            for(int j = 0;j < col;j++) {
+                if(board[i][j] == 'O') {
+                    board[i][j] = 'X';
+                }else if(board[i][j] == 'C') {
+                    board[i][j] = 'O';
+                }
+            }
+        }
+    }
+}
