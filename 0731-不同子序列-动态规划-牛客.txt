@@ -1,0 +1,32 @@
+public class Solution {
+    public int numDistinct(String S, String T) {
+        int len1 = S.length();
+        int len2 = T.length();
+        if(len1 == 0) {
+            if(len2 == 0) {
+                return 1;
+            }
+            return 0;
+        }
+        if(len2 == 0) {
+            return 1;
+        }
+        int[][] mat = new int[len1 + 1][len2 + 1];
+        for(int i = 0;i < len2 + 1;i++) {
+            mat[0][i] = 0;
+        }
+        for(int i = 0;i < len1 + 1;i++) {
+            mat[i][0] = 1;
+        }
+        for(int i = 1;i <= len1;i++) {
+            for(int j = 1;j <= len2;j++) {
+                if(S.charAt(i - 1) == T.charAt(j - 1)) {
+                    mat[i][j] = mat[i - 1][j] + mat[i - 1][j - 1];
+                }else {
+                    mat[i][j] = mat[i - 1][j];
+                }
+            }
+        }
+        return mat[len1][len2];
+    }
+}
