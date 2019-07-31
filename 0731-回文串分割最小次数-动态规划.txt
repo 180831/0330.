@@ -1,0 +1,33 @@
+public class Solution {
+    public int minCut(String s) {
+        int len = s.length();
+        if(len == 0) {
+            return 0;
+        }
+        //F(i) = i - 1;
+        int[] cut = new int[len + 1];
+        for (int i = 0; i <= len; i++) {
+            cut[i] = i - 1;
+        }
+        for (int i = 1; i <= len; i++) {
+            for (int j = 0; j < i; j++) {
+                //ÅÐ¶Ï×Ó´®´Ósubstr(j + 1),1)  min(F(j) + 1,F(i))
+                if(isPal(s,j,i - 1)) {
+                    cut[i] = Math.min(cut[j] + 1,cut[i]);
+                }
+            }
+        }
+        return cut[len];
+    }
+
+    private boolean isPal(String s, int j, int i) {
+        while(j < i) {
+            if(s.charAt(j) != s.charAt(i)) {
+                return false;
+            }
+            j++;
+            i--;
+        }
+        return true;
+    }
+}
