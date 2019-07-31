@@ -1,0 +1,29 @@
+/*
+// Employee info
+class Employee {
+    // It's the unique id of each node;
+    // unique id of this employee
+    public int id;
+    // the importance value of this employee
+    public int importance;
+    // the id of direct subordinates
+    public List<Integer> subordinates;
+};
+*/
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+        HashMap<Integer,Employee> map = new HashMap<>();
+        for(int i = 0; i < employees.size();i++) {
+            map.put(employees.get(i).id,employees.get(i));
+        }
+        return DFS(id,map);
+    }
+    public int DFS(int id,HashMap<Integer,Employee> map) {
+        int ret = map.get(id).importance;
+        int count = map.get(id).subordinates.size();
+        for(int i = 0; i < count;i++) {
+            ret += DFS(map.get(id).subordinates.get(i),map);
+        }
+        return ret;
+    }
+}
