@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:ÊØÐÎÊý
+ * User:Light_Long
+ * Date:2019-08-02
+ * Time:20:28
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int pop = in.nextInt();
+            int pop1 = pop * pop;
+            String str1 = String.valueOf(pop);
+            String str2 = String.valueOf(pop1);
+            int len = str2.length();
+            int i = -1;
+            for (i = str1.length() - 1; i >= 0; i--) {
+                if(str1.charAt(i) != str2.charAt(len-- - 1)) {
+                    System.out.println("No!");
+                    break;
+                }
+            }
+            if(i == -1) {
+                System.out.println("Yes!");
+            }
+        }
+    }
+}
