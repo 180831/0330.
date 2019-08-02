@@ -1,0 +1,40 @@
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-02
+ * Time:21:41
+ */
+public class Main {
+
+    private static double numsChild(int n) {
+        if(n <= 1) {
+            return 0;
+        }
+        if(n == 2) {
+            return 1;
+        }
+        return (n - 1) * (numsChild(n - 1) + numsChild(n - 2));
+    }
+
+    private static double numsParent(int n) {
+        if(n == 1) {
+            return 1;
+        }
+        return n * numsParent(n - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int pop = in.nextInt();
+            double nums = numsChild(pop);
+            double nums1 = numsParent(pop);
+            double result = (nums/nums1)*100;
+            System.out.println(String.format("%.2f", result) + "%");
+        }
+    }
+}
