@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:∆Ê≈º–£—È
+ * User:Light_Long
+ * Date:2019-08-05
+ * Time:11:12
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            int len = str.length();
+            for (int i = 0; i < len; i++) {
+                char pop = str.charAt(i);
+                int pop1 = (int)pop;
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int j = 0; j < 7; j++) {
+                    stringBuilder.append(pop1 >> j & 1);
+                }
+                int flag = 0;
+                for (int j = 0; j < stringBuilder.length(); j++) {
+                    if(stringBuilder.charAt(j) == '1') {
+                        flag++;
+                    }
+                }
+                if(flag % 2 == 0) {
+                    stringBuilder.append(1).reverse();
+                }else {
+                    stringBuilder.append(0).reverse();
+                }
+                System.out.println(stringBuilder.toString());
+            }
+        }
+    }
+}
