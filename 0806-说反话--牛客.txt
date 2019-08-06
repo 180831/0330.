@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-06
+ * Time:20:05
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            String[] strarr = str.split(" ");
+            int len = strarr.length;
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = len - 1; i >= 0; i--) {
+                stringBuilder.append(strarr[i]);
+                if(i != 0) {
+                    stringBuilder.append(" ");
+                }
+            }
+            System.out.println(stringBuilder.toString());
+        }
+    }
+}
