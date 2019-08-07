@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-07
+ * Time:16:16
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            String[] arr = str.split(" ");
+            String[] arr1 = arr[0].split("\\.");
+            String[] arr2 = arr[1].split("\\.");
+            int[] arr3 = new int[arr1.length];
+            int[] arr4 = new int[arr2.length];
+            for (int i = 0; i < arr1.length; i++) {
+                arr3[i] = Integer.parseInt(arr1[i]);
+                arr4[i] = Integer.parseInt(arr2[i]);
+            }
+            int[] arrcount = new int[3];
+            for (int i = 2; i >= 0 ; i--) {
+                if(arr4[i] >= arr3[i]) {
+                    arrcount[i] = arr4[i] - arr3[i];
+                }else if(i == 2){
+                    if(arr4[1] > 0) {
+                        arr4[1]--;
+                        arr4[2] = 29 + arr4[2];
+                        arrcount[2] = arr4[i] - arr3[i];
+                    }else {
+                        if(arr4[0] > 0) {
+                            arr4[0]--;
+                            arr4[1] = arr4[1] + 17;
+                            arr4[1]--;
+                            arr4[2] = 29 + arr4[2];
+                            arrcount[2] = arr4[i] - arr3[i];
+                        }else {
+                            arrcount[2] = arr4[i] - arr3[i];
+                        }
+                    }
+                }else if(i == 1) {
+                    if(arr4[0] > 0) {
+                        arr4[0]--;
+                        arr4[1] = arr4[1] + 17;
+                        arrcount[1] = arr4[1] - arr3[1];
+                    }else {
+                        arrcount[1] = arr4[1] - arr3[1];
+                    }
+                }else {
+                    arrcount[0] = arr4[0] - arr3[0];
+                    if(arrcount[0] < 0) {
+                            arrcount[0]++;
+                            arrcount[1] = 16 - arrcount[1];
+                            arrcount[2] = 29 - arrcount[2];
+                        }
+                }
+            }
+            System.out.println(arrcount[0] + "." + arrcount[1]
+            + "." + arrcount[2]);
+        }
+    }
+}
