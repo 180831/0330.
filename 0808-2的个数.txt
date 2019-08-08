@@ -1,0 +1,44 @@
+import java.util.*;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-07
+ * Time:22:37
+ */
+
+
+public class Count2 {
+
+    public int countNumberOf2s(int n) {
+        // write code here
+        if (n <= 0) {
+            return 0;
+        }
+        int round = n;
+        int weight = 0;
+        int base = 1;
+        int count = 0;
+        while (round != 0) {
+            //获得当前最低为的值
+            weight = round % 10;
+            //获取去掉最低位降幂之后的值
+            round /= 10;
+            //数值直接 += round 位 因为每一个数的末尾都有2存在
+            count += round * base;
+            //如果最低位为2
+            if (weight == 2) {
+                //count 继续加等于n % 当前次幂的值 再加本身值
+                count += (n % base) + 1;
+            }
+                //如果末尾值大于2 直接加等于当前的次幂数
+            if (weight > 2) {
+                count += base;
+            }
+            //次幂升级
+            base *= 10;
+        }
+        return count;
+    }
+}
