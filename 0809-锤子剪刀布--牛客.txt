@@ -1,0 +1,121 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-09
+ * Time:10:48
+ */
+public class Main {
+    
+    public static void main(String[] args) {
+        
+        Scanner in= new Scanner(System.in);
+        
+        while(in .hasNextLine()) {
+            int pop = Integer.parseInt(in.nextLine());
+            String[] strarr = new String[pop];
+            for (int i = 0; i < pop; i++) {
+                strarr[i] = in.nextLine();
+            }
+            int[] numsarr1 = new int[3];
+            int[] numsarr2 = new int[3];
+            int[] count1 = new int[3];
+            int[] count2 = new int[3];
+            for (int i = 0; i < pop; i++) {
+                String str = strarr[i];
+                String[] str1 = str.split(" ");
+                String num1 = str1[0];
+                String num2 = str1[1];
+                if (num1.equals("C")) {
+                    if (num2.equals("C")) {
+                        numsarr1[1]++;
+                        numsarr2[1]++;
+                    }
+                    if (num2.equals("J")) {
+                        numsarr1[0]++;
+                        numsarr2[2]++;
+                        count1[1]++;
+                    }
+                    if (num2.equals("B")) {
+                        numsarr1[2]++;
+                        numsarr2[0]++;
+                        count2[0]++;
+                    }
+                } else if (num1.equals("J")) {
+                    if (num2.equals("C")) {
+                        numsarr1[2]++;
+                        numsarr2[0]++;
+                        count2[1]++;
+                    }
+                    if (num2.equals("J")) {
+                        numsarr1[1]++;
+                        numsarr2[1]++;
+                    }
+                    if (num2.equals("B")) {
+                        numsarr1[0]++;
+                        numsarr2[2]++;
+                        count1[2]++;
+                    }
+                } else if (num1.equals("B")) {
+                    if (num2.equals("C")) {
+                        numsarr1[0]++;
+                        numsarr2[2]++;
+                        count1[0]++;
+                    }
+                    if (num2.equals("J")) {
+                        numsarr1[2]++;
+                        numsarr2[0]++;
+                        count2[2]++;
+                    }
+                    if (num2.equals("B")) {
+                        numsarr1[1]++;
+                        numsarr2[1]++;
+                    }
+                } else {
+
+                }
+            }
+            int temp1 = count1[0];
+            int flag1 = 0;
+            int flag2 = 0;
+            int temp2 = count2[0];
+            for (int i = 1; i < 3; i++) {
+                if (temp1 >= count1[i]) {
+
+                } else {
+                    temp1 = count1[i];
+                    flag1 = i;
+                }
+
+                if (temp2 >= count2[i]) {
+
+                } else {
+                    temp2 = count2[i];
+                    flag2 = i;
+                }
+            }
+            String[] light = new String[2];
+            if (flag1 == 0) {
+                light[0] = "B";
+            } else if (flag1 == 1) {
+                light[0] = "C";
+            } else {
+                light[0] = "J";
+            }
+
+            if (flag2 == 0) {
+                light[1] = "B";
+            } else if (flag1 == 1) {
+                light[1] = "C";
+            } else {
+                light[1] = "J";
+            }
+
+            System.out.println(numsarr1[0] + " " + numsarr1[1] + " " + numsarr1[2]);
+            System.out.println(numsarr2[0] + " " + numsarr2[1] + " " + numsarr2[2]);
+            System.out.println(light[0] + " " + light[1]);
+        }
+    }
+}
