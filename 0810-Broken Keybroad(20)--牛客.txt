@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-10
+ * Time:12:52
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            char[] str1 = in.nextLine().toUpperCase().toCharArray();
+            char[] str2 = in.nextLine().toUpperCase().toCharArray();
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < str2.length; i++) {
+                for (int j = 0; j < str1.length; j++) {
+                    if(str2[i] == str1[j]) {
+                        str2[i] = '.';
+                        str1[j] = '.';
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < str1.length; i++) {
+                if(str1[i] != '.') {
+                    if(str.length() == 0) {
+                        str.append(str1[i]);
+                    }else {
+                        int j = 0;
+                        for (j = 0; j < str.length(); j++) {
+                            if(str1[i] == str.charAt(j)) {
+                                break;
+                            }
+                        }
+                        if(j == str.length()) {
+                            str.append(str1[i]);
+                        }
+                    }
+                }
+            }
+            System.out.println(str.toString());
+        }
+    }
+}
