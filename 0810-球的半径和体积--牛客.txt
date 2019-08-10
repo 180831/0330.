@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-10
+ * Time:13:07
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+            while(in.hasNextInt()) {
+                int[] arr = new int[6];
+                for (int i = 0; i < 6; i++) {
+                    arr[i] = in.nextInt();
+                }
+                double radius = Math.sqrt((arr[3] - arr[0]) *(arr[3] - arr[0]) +
+                        (arr[4] - arr[1]) *(arr[4] - arr[1]) +
+                        (arr[5] - arr[2]) *(arr[5] - arr[2]));
+                double pi = Math.PI;
+                double nums = 4.0 / 3.0;
+                double volume = nums * pi * Math.pow(radius,3);
+                System.out.println(String.format("%.3f",radius) + " " +
+                String.format("%.3f",volume));
+            }
+    }
+}
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-10
+ * Time:13:07
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+            while(in.hasNextInt()) {
+                int[] arr = new int[6];
+                for (int i = 0; i < 6; i++) {
+                    arr[i] = in.nextInt();
+                }
+                double radius = Math.sqrt((arr[3] - arr[0]) *(arr[3] - arr[0]) +
+                        (arr[4] - arr[1]) *(arr[4] - arr[1]) +
+                        (arr[5] - arr[2]) *(arr[5] - arr[2]));
+                double pi = Math.PI;
+                double nums = 4.0 / 3.0;
+                double volume = nums * pi * Math.pow(radius,3);
+                System.out.println(String.format("%.3f",radius) + " " +
+                String.format("%.3f",volume));
+            }
+    }
+}
