@@ -1,0 +1,222 @@
+package www;
+
+import java.util.Arrays;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-11
+ * Time:18:32
+ */
+public class light {
+
+    //直接插入排序 时间复杂度 O(n2)
+    public static int[] insert1(int[] arr) {
+        for (int i = 0; i < arr.length ; i++) {
+            int k = 0;
+            int temp = arr[i];
+            for (k = i - 1; k >= 0 ; k--) {
+                if(arr[k] > temp) {
+                    arr[k + 1] = arr[k];
+                }else {
+                    break;
+                }
+            }
+            arr[k + 1] = temp;
+        }
+        return arr;
+    }
+
+    //希尔排序 先确定增量序列，然后再进行直接插入排序，时间复杂度O(1.3--1.5之间)
+    public static int[] shell1(int[] arr) {
+        int[] arr1 = {5,3,1};
+        for (int i = 0; i < arr1.length; i++) {
+            arr = shell11(arr,arr1[i]);
+        }
+        return arr;
+    }
+
+    public static int[] shell11(int[] arr,int pop) {
+        for (int i = pop; i < arr.length; i++) {
+            int j = 0;
+            int temp = arr[i];
+            for (j = i - pop; j >= 0 ; j -= pop) {
+                if(arr[j] > temp) {
+                    arr[j + pop] = arr[j];
+                }else {
+                    break;
+                }
+            }
+            arr[j + pop] = temp;
+        }
+        return arr;
+    }
+
+    //选择排序 时间复杂度为O(n2) 不稳定
+    public static int[] select1(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            int temp = 0;
+            for (int j = i + 1; j < arr.length; j++) {
+                if(arr[j] < arr[i]) {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    //堆排序
+    public static int[] adjust1(int[] arr,int start,int end) {
+        int temp = arr[start];
+        for (int i = 2 * start + 1; i <= end; i = 2 * i + 1) {
+            //找出孩子节点中最大的那个
+            if(i < end && arr[i] < arr[i + 1]) {
+                i++;
+            }
+
+            if(arr[i] > temp) {
+                arr[start] = arr[i];
+                start = i;
+            }else if(temp > arr[i]) {
+                break;
+            }
+        }
+        arr[start] = temp;
+        return arr;
+    }
+
+    public static int[] headSort1(int[] arr) {
+        for (int i = (arr.length - 1 - 1) / 2; i >= 0; i--) {
+            adjust1(arr,i,arr.length - 1);
+        }
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            int temp = arr[0];
+            arr[0] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = temp;
+
+            adjust1(arr,0,arr.length - 1 - i - 1);
+        }
+        return arr;
+    }
+
+    public static void adjust2(int[] arr,int start,int end) {
+        int temp = arr[start];
+        for (int i = 2 * start + 1; i <= end; i = 2 * i + 1) {
+            if(i < end && arr[i] < arr[i + 1]) {
+                i++;
+            }
+            if(arr[i] > temp) {
+                arr[start]  = arr[i];
+                start = i;
+            }else if(arr[i] < temp) {
+                break;
+            }
+        }
+        arr[start] = temp;
+    }
+
+    public static void headSort2(int[] arr) {
+        for (int i = (arr.length - 1 - 1) / 2; i >= 0; i--) {
+            adjust1(arr,i,arr.length - 1);
+        }
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            int temp = arr[0];
+            arr[0] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = temp;
+            adjust1(arr,0,arr.length - 1 - i - 1);
+        }
+    }
+
+    //快排
+    public static void quickSort(int[] arr) {
+        quick(arr,0,arr.length - 1);
+    }
+    public static void quick(int[] arr,int start,int end) {
+        int par = quicktion(arr,start,end);
+        if(par > start + 1) {
+            quick(arr,start,par - 1);
+        }
+        if(par < end - 1) {
+            quick(arr,par + 1,end);
+        }
+    }
+
+    public static int quicktion(int[] arr,int low,int high) {
+        int temp = arr[low];
+        while(low < high) {
+            while(low < high && arr[high] >= temp) {
+                high--;
+            }
+            if(high == low) {
+                break;
+            }else {
+                arr[low] = arr[high];
+                low++;
+            }
+            while(low < high && arr[low] <= temp) {
+                low++;
+            }
+            if(low == high) {
+                break;
+            }else {
+                arr[high] = arr[low];
+                high--;
+            }
+        }
+        arr[low] = temp;
+        return low;
+    }
+
+    //归并排序
+    public static void morgeSort(int[] arr,int start,int end) {
+        if(start == end) {
+            return;
+        }
+        int mid = (start + end) / 2;
+        morgeSort(arr,start,mid);
+        morgeSort(arr,mid + 1,end);
+
+        morge(arr,start,mid,end);
+    }
+
+    public static void morge(int[] arr,int start,int mid,int end) {
+        int[] str = new int[arr.length];
+        int i = start;
+        int q = mid + 1;
+        int p = start;
+        int index = start;
+        while(p <= mid && q <= end) {
+            if(arr[p] <= arr[q]) {
+                str[index++] = arr[p++];
+            }else {
+                str[index++] = arr[q++];
+            }
+        }
+        while(p <= mid) {
+            str[index++] = arr[p++];
+        }
+        while(q <= end) {
+            str[index++] = arr[q++];
+        }
+        while(i <= end) {
+           arr[i] = str[i];
+           i++;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,5,2,7,6,9};
+        //insert1(arr);
+        //shell1(arr);
+        //select1(arr);
+        //headSort1(arr);
+        //quickSort(arr);
+        //morgeSort(arr,0,arr.length - 1);
+        System.out.println(Arrays.toString(arr));
+    }
+}
