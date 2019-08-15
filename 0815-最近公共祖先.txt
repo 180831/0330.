@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class LCA {
+    public int getLCA(int a, int b) {
+        // write code here
+        int flag = 0;
+        int min = Math.min(a,b);
+        int max = Math.max(a,b);
+        while(min < max) {
+            while(min < max) {
+               max = max / 2;
+            }
+            if(min == max) {
+                return min;
+            }
+            while(min > max) {
+                min = min / 2;
+            }
+            if(min == max) {
+                return max;
+            }
+        }
+        return min;
+    }
+}
