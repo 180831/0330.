@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-16
+ * Time:14:27
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str1 = in.nextLine();
+            String str2 = in.nextLine();
+            for (int i = 0; i < str2.length(); i++) {
+                String pop = String.valueOf(str2.charAt(i));
+                str1 = str1.replaceAll(pop, "");
+            }
+            System.out.println(str1);
+        }
+    }
+}
