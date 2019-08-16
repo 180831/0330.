@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-16
+ * Time:17:47
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            String[] arr = str.split(";");
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < arr.length; i++) {
+                String pop = arr[i];
+                if(pop.length() < 2 || pop.length() > 3) {
+                    continue;
+                }
+                String par = pop.substring(1,pop.length());
+                int j = 0;
+                for (j = 0; j < par.length(); j++) {
+                    if(par.charAt(j) > '9' || par.charAt(j) < '0') {
+                        break;
+                    }
+                }
+                if(j < par.length()) {
+                    continue;
+                }
+                int sum = Integer.parseInt(par);
+                if (pop.charAt(0) == 'A') {
+                    x -= sum;
+                }
+                if (pop.charAt(0) == 'D') {
+                    x += sum;
+                }
+                if (pop.charAt(0) == 'W') {
+                    y += sum;
+                }
+                if (pop.charAt(0) == 'S') {
+                    y -= sum;
+                }
+            }
+            System.out.println(x + "," + y);
+        }
+    }
+}
