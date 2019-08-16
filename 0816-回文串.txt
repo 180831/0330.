@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-16
+ * Time:13:39
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            int len = str.length();
+            int low = 0;
+            int high = len - 1;
+            if(len > 10) {
+                System.out.println("NO");
+                continue;
+            }
+            //uycysygyay
+            while(low <= high) {
+                if(str.charAt(low) == str.charAt(high)) {
+                    low++;
+                    high--;
+                }else{
+                    if(str.charAt(low + 1) == str.charAt(high)) {
+                        low++;
+                    }else if(str.charAt(high - 1) == str.charAt(low)){
+                        high--;
+                    }else {
+                        System.out.println("NO");
+                        break;
+                    }
+                }
+            }
+            if(low >= high) {
+                System.out.println("YES");
+            }
+        }
+    }
+}
