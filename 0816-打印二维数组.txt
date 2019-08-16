@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class Printer {
+    public int[] arrayPrint(int[][] arr, int n) {
+        // write code here
+        int temp = arr[n - 1][0];
+        int[] str = new int[n * n];
+        int index = 0;
+        int row = 0;
+        int cel = n - 1;
+        while(row < n) {
+            int x = row;
+            int y = cel;
+            while(x < n && y < n) {
+                str[index++] = arr[x++][y++];
+            }
+            if(cel > 0) {
+                cel--;
+            }else {
+                row++;
+            }
+        }
+        return str;
+    }
+}
