@@ -1,0 +1,42 @@
+import java.util.* ;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-16
+ * Time:17:02
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int pop = in.nextInt();
+            int[] arr = new int[pop];
+            for (int i = 0; i < pop; i++) {
+                arr[i] = in.nextInt();
+            }
+            int sum = 0;
+            int temp = 0;
+            int count = 0;
+            for (int i = 0; i < pop; i++) {
+                //一直累加
+                temp += arr[i];
+                //表示加当前值和不加当前值哪一个大 
+                sum = Math.max(temp,temp - arr[i]);
+                //保存一下目前的最大值
+                count = Math.max(sum,count);
+                //判断从之前位置一直加到现在和一个都不加哪一个比较大
+                temp = Math.max(temp,0);
+            }
+            //判断最终值和曾经保存的中间最大值哪一个更大
+            temp = Math.max(temp,count);
+            //所有值都小于0，一个都没有取，只能在数组中找一个最大的
+            if(temp == 0) {
+                Arrays.sort(arr);
+                temp = arr[arr.length - 1];
+            }
+            System.out.println(temp);
+        }
+    }
+}
