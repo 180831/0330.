@@ -1,0 +1,83 @@
+package com.day0817;
+
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-17
+ * Time:16:43
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            String strr = in.nextLine();
+            int len = str.length();
+            int len1 = strr.length();
+            StringBuilder str1 = new StringBuilder();
+            StringBuilder str2 = new StringBuilder();
+            for (int i = 0; i < len; i++) {
+                char pop = str.charAt(i);
+                char par = ',';
+                if(pop <= 'z' && pop >= 'a') {
+                    if(pop == 'z') {
+                        par = 'A';
+                    }else {
+                        par = (char)(pop + 1 - 32);
+                    }
+                }else if(pop <= 'Z' && pop >= 'A') {
+                    if(pop == 'Z') {
+                        par = 'a';
+                    }else {
+                        par = (char)(pop + 1 + 32);
+                    }
+                }else if(pop <= '9' && pop >= '0') {
+                    if(pop == '9') {
+                        par = '0';
+                    }else {
+                        par = (char)(pop + 1);
+                    }
+                }else {
+                    par = pop;
+                }
+                str1.append(par);
+            }
+
+            for (int i = 0; i < len1; i++) {
+                char pop = strr.charAt(i);
+                char par = ',';
+                if(pop <= 'z' && pop >= 'a') {
+                    if(pop == 'a') {
+                        par = 'Z';
+                    }else {
+                        par = (char)(pop - 1 - 32);
+                    }
+                }else if(pop <= 'Z' && pop >= 'A') {
+                    if(pop == 'A') {
+                        par = 'z';
+                    }else {
+                        par = (char)(pop - 1 + 32);
+                    }
+                }else if(pop <= '9' && pop >= '0') {
+                    if(pop == '0') {
+                        par = '9';
+                    }else {
+                        par = (char)(pop - 1);
+                    }
+                }else {
+                    par = pop;
+                }
+                str2.append(par);
+            }
+            System.out.println(str1.toString());
+            System.out.println(str2.toString());
+        }
+    }
+}
+
+
+
