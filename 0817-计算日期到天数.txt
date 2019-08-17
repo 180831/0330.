@@ -1,0 +1,44 @@
+import java.util.* ;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int str1 = in.nextInt();
+            int str2 = in.nextInt();
+            int str3 = in.nextInt();
+            int[] arr = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+            int count = 0;
+            int sum = 0;
+            
+            if(str1 < 0 || str2 < 0 || str2 > 12 || str3 < 0 || str3 > 31) {
+                System.out.println("-1");
+                continue;
+            }
+            
+            if(str1 % 400 == 0 || (str1 % 100 != 0 && str1 % 4 == 0)) {
+                arr[2] = 29;
+                if(str3 > arr[str2]) {
+                    System.out.println("-1");
+                    continue;
+                }
+                while(count != str2) {
+                    sum += arr[count++];
+                }
+                sum += str3;
+                System.out.println(sum);
+            }else {
+                arr[2] = 28;
+                if(str3 > arr[str2]) {
+                    System.out.println("-1");
+                    continue;
+                }
+                while(count != str2) {
+                    sum += arr[count++];
+                }
+                sum += str3;
+                System.out.println(sum);
+            }
+        }
+    }
+}¡¤¡¤
