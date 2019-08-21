@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-21
+ * Time:13:58
+ */
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        List<List<Integer>> arrlist = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        helper(arrlist, list, m, 1, n);
+        for(List<Integer> tmp : arrlist) {
+            String str = "";
+            for(int i : tmp) {
+                str += i + " ";
+            }
+            str = str.trim();
+            System.out.println(str);
+        }
+    }
+
+    public static void helper(List<List<Integer>> arrlist, List<Integer> list,
+                              int dest, int bottom, int n) {
+        if(dest < 0)
+            return;
+        else if(dest == 0) {
+            arrlist.add(new ArrayList<>(list));
+            return;
+        } else {
+            for(int i = bottom; i <= n && i <= dest; i++) {
+                list.add(i);
+                helper(arrlist, list, dest - i, i + 1, n);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
