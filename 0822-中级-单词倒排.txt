@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-22
+ * Time:18:31
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String str = in.nextLine();
+            String[] arr = str.split("[^a-zA-Z]+");
+            StringBuilder str1 = new StringBuilder();
+            if(arr.length == 1) {
+                System.out.println(arr[0]);
+                continue;
+            }
+            for (int i = arr.length - 1; i >= 0; i--) {
+                if(i == 0) {
+                    str1.append(arr[i]);
+                }else {
+                    str1.append(arr[i]);
+                    str1.append(" ");
+                }
+            }
+            System.out.println(str1);
+        }
+    }
+}
