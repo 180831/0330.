@@ -1,0 +1,54 @@
+import java.util.Arrays;
+
+public class Solution {
+    public int MoreThanHalfNum_Solution(int [] array) {
+        if(array.length == 0){
+            return 0;
+        }
+        if(array.length == 1) {
+            return array[0];
+        }
+        if(array.length == 2){
+            if(array[0] == array[1]) {
+                return array[0];
+            }else {
+                return 0;
+            }
+        }
+        int count = 0;
+        Arrays.sort(array);
+        if(array.length % 2 != 0) {
+            int nums = array[array.length / 2];
+            for (int i = 0; i < array.length; i++) {
+                if(count > array.length / 2) {
+                    return nums;
+                }
+                if(array[i] == nums) {
+                    count++;
+                }
+            }
+            return 0;
+        }else {
+            int nums1 = array[array.length / 2];
+            int nums2 = array[array.length / 2 - 1];
+            int count1 = 0;
+            int count2 = 0;
+            for (int i = 0; i < array.length; i++) {
+                if(count1 > array.length / 2) {
+                    return nums1;
+                }
+                if(count2 > array.length / 2) {
+                    return nums2;
+                }
+                if(nums1 == array[i]) {
+                    count1++;
+                }
+                if(nums2 == array[i]) {
+                    count2++;
+                }
+            }
+            return 0;
+        }
+    }
+}
+
