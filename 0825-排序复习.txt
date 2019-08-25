@@ -1,0 +1,175 @@
+package com.Tree;
+
+import sun.reflect.generics.tree.Tree;
+
+import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
+
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-25
+ * Time:15:00
+ */
+public class Main {
+
+    //private static List<Integer> list = new ArrayList<>();
+
+    public static List<Integer> preorderReturn(TreeNode root) {
+
+        List<Integer> list = new ArrayList<>();
+        if(root == null) {
+            return list;
+        }
+        list.add(root.val);
+        List<Integer> leftList = preorderReturn(root.left);
+        List<Integer> rightList = preorderReturn(root.right);
+        list.addAll(leftList);
+        list.addAll(rightList);
+        return list;
+    }
+
+    public static TreeNode searchVal(TreeNode root,int val) {
+        if(root == null) {
+            return null;
+        }
+        if(root.val == val) {
+            return root;
+        }
+        TreeNode left = searchVal(root.left,val);
+        if(left != null) {
+            return left;
+        }
+        TreeNode right = searchVal(root.right,val);
+        if(right != null) {
+            return right;
+        }
+        return null;
+    }
+
+    public boolean isFullTree(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while(true) {
+            TreeNode front = queue.poll();
+            if(front == null) {
+                break;
+            }
+            queue.add(front.left);
+            queue.add(front.right);
+        }
+
+
+
+        Set<TreeNode> set = new HashSet<>(queue);//set ШЅжи
+        return set.size() == 1;
+
+
+
+
+    }
+
+    /*public static void main(String[] args) {
+        Map<String,Integer> map = new HashMap<>();
+        map.put("1",5);
+        System.out.println(map.keySet());
+        map.entrySet();
+    }*/
+
+    public static void heapSort(int[] arr) {
+        for (int i = (arr.length - 1 - 1) / 2; i >= 0; i--) {
+            adjust(arr,i,arr.length - 1);
+        }
+        for (int i = 0; i < arr.length - 1; i++) {
+            int temp = arr[0];
+            arr[0] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] =temp;
+            adjust(arr,0,arr.length - 1 - i - 1);
+        }
+    }
+
+    private static void adjust(int[] arr, int i, int end) {
+        int temp = arr[i];
+        for (int j = 2 * i + 1; j <= end; j = 2 * i + 1) {
+            if(j < end && arr[j] < arr[j + 1]) {
+                j++;
+            }
+            if(arr[j] > temp) {
+                arr[i] = arr[j];
+                i = j;
+            }else {
+                break;
+            }
+        }
+        arr[i] = temp;
+    }
+
+
+    public static void insertSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int temp = arr[i];
+            int j = 0;
+            for (j = i - 1; j >= 0; j--) {
+                if(arr[j] > temp) {
+                    arr[j + 1] = arr[j];
+                }else {
+                    break;
+                }
+            }
+            arr[j + 1] = temp;
+        }
+    }
+
+    public static void quickSort(int[] arr) {
+        quick1(arr,0,arr.length - 1);
+    }
+
+    private static void quick1(int[] arr, int start, int end) {
+        int par = quicktion1(arr,start,end);
+        if(par < end - 1) {
+            quick1(arr,par + 1,end);
+        }
+        if(par > start + 1) {
+            quick1(arr,start,par);
+        }
+    }
+
+    private static int quicktion1(int[] arr, int start, int end) {
+        int temp = arr[start];
+        while(start < end) {
+            while(start < end && arr[end] >= temp) {
+                end--;
+            }
+            if(start == end) {
+                break;
+            }else {
+                arr[start++] = arr[end];
+            }
+            while(start < end && arr[start] <= temp) {
+                start++;
+            }
+            if(start == end) {
+                break;
+            }else {
+                arr[end--] = arr[start];
+            }
+        }
+        arr[start] = temp;
+        return start;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1,5,3,5,9,5,3,7};
+        //heapSort(arr);
+        //insertSort(arr);
+        //Arrays.sort(arr);
+        quickSort(arr);
+        synchronized (arr.getClass()) {
+            ReentrantLock
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+
+}
