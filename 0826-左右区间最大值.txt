@@ -1,0 +1,31 @@
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-08-26
+ * Time:14:01
+ */
+import java.util.*;
+
+public class MaxGap {
+    public int findMaxGap(int[] A, int n) {
+        // write code here
+        int pop = A[0]; //定义一个最区间最大值初始为A[0]
+        int max = Math.abs(A[0] - A[A.length - 1]);
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] > pop) {
+                pop = A[i];
+            }
+            int max2 = A[A.length - 1]; //每次从n-1开始在右区间找最大值
+            for (int j = A.length - 1; j > i; j--) {
+                if (A[j] > max2) {
+                    max2 = A[j];
+                }
+                if (Math.abs(pop - max2) > max) {
+                    max = Math.abs(pop - max2);
+                }
+            }
+        }
+        return max;
+    }
+}
