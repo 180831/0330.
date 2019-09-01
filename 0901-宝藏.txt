@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-09-01
+ * Time:20:05
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int n = in.nextInt();
+            int m = in.nextInt();
+            if(n >= 1 && m <= 100000) {
+                int[] arr1 = new int[n];
+                int[] arr2 = new int[m];
+
+                for (int i = 0; i < n; i++) {
+                    arr1[i] = in.nextInt();
+                }
+
+                for (int i = 0; i < m; i++) {
+                    arr2[i] = in.nextInt();
+                }
+
+                int min = 0;
+                int max = 0;
+                int flag1 = 0;
+                int flag2 = 0;
+                int flag3 = 0;
+                int flag4 = 0;
+                for (int i = 0; i < n; i++) {
+                    if(arr1[i] % 2 == 0) {
+                        flag1++;
+                    }else {
+                        flag2++;
+                    }
+                }
+
+                for (int i = 0; i < m; i++) {
+                    if(arr2[i] % 2 == 0) {
+                        flag3++;
+                    }else {
+                        flag4++;
+                    }
+                }
+                min = Math.min(flag1,flag4);
+                max = Math.min(flag2,flag3);
+                System.out.println(max + min);
+            }
+
+        }
+    }
+}
