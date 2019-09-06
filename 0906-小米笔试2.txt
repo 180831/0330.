@@ -1,0 +1,14 @@
+Arrays.sort(prices);
+        int count = 0;
+        for(int i = prices.length - 1;i >= 0;i--) {
+             if(budget < prices[i]) {
+                 
+             }else {
+                 count++;
+                 budget -= prices[i];
+             }
+        }
+        if(count == 0) {
+            return -1;
+        }
+        return count;
