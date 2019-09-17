@@ -1,0 +1,50 @@
+import java.util.*;
+
+/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+    public TreeNode(int val) {
+        this.val = val;
+    }
+}*/
+public class Tree {
+    
+    private int max = 0;
+    private int min = 1111111;
+    private StringBuilder maxstr;
+    private StringBuilder minstr;
+    
+    void PreNode(TreeNode node,char pop,StringBuilder str) {
+        if(node != null) {
+            //记录路径
+            str.append(pop);
+            //到了叶子节点，找最大的和最小的叶子节点
+            if(node.left == null && node.right == null) {
+                if(max < node.val) {
+                    max = node.val;
+                    maxstr = str;
+                }
+                if(min > node.val) {
+                    min = node.val;
+                    minstr = str;
+                }
+            }
+            PreNode(node.left,'0',new StringBuilder(str));
+            PreNode(node.right,'1',new StringBuilder(str));
+        }
+    }
+    public int getDis(TreeNode root) {
+        // write code here
+        PreNode(root,'0',new StringBuilder());
+        int i = 0;
+        int len = maxstr.length() > minstr.length() ? maxstr.length() : minstr.length();
+        for(i = 0;i < len;i++) {
+            if(maxstr.charAt(i) != minstr.charAt(i)) {
+                break;
+            }
+        }
+        return maxstr.substring(i).length() + minstr.substring(i).length();
+    } 
+}
