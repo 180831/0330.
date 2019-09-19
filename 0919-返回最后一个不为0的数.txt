@@ -1,0 +1,46 @@
+package www.Asher.day0919;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-09-19
+ * Time:17:09
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String n = in.nextLine();
+            BigInteger bigInteger = new BigInteger(n);
+            BigInteger pop = new BigInteger("-1");
+            BigInteger count = new BigInteger("1");;
+
+            int num = Integer.parseInt(n);
+            count = count.multiply(bigInteger);
+            while(num != 1) {
+                bigInteger = bigInteger.add(pop);
+                count = count.multiply(bigInteger);
+                //System.out.println(count);
+                num--;
+            }
+            String str = String.valueOf(count);
+            int i = -2;
+            for (i = str.length() - 1; i >= 0; i--) {
+                if(str.charAt(i) != '0') {
+                    break;
+                }
+            }
+            if(i >= 0) {
+                System.out.println(str.charAt(i));
+            }else {
+                System.out.println(0);
+            }
+        }
+    }
+
+}
