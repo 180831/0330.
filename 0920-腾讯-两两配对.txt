@@ -1,0 +1,50 @@
+package www.Asher.day0920;
+
+import java.util.* ;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:牛客-腾讯-两两配对
+ * User:Light_Long
+ * Date:2019-09-20
+ * Time:20:20
+ */
+public class Main1 {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()) {
+            int n = in.nextInt();
+            Map<Integer,Integer> map = new TreeMap<>();
+            for (int i = 0; i < n; i++) {
+                int pop = in.nextInt();
+                map.put(in.nextInt(),pop);
+            }
+            int[] arr1 = new int[n];
+            int[] arr2 = new int[n];
+            int index = 0;
+            for (int pop : map.keySet()) {
+                arr1[index++] = pop;
+            }
+            index = 0;
+            for (int i = 0; i < n; i++) {
+                arr2[i] = map.get(arr1[i]);
+            }
+            int low = 0;
+            int high = arr1.length - 1;
+            int max = 0;
+            while(low <= high) {
+                if(arr2[low] > 0 && arr2[high] > 0) {
+                    max = max > arr1[low] + arr1[high] ? max : arr1[low] + arr1[high];
+                    arr2[low]--;
+                    arr2[high]--;
+                }else if(arr2[low] == 0) {
+                    low++;
+                }else if(arr2[high] == 0) {
+                    high--;
+                }
+            }
+            System.out.println(max);
+        }
+    }
+}
