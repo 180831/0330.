@@ -1,0 +1,63 @@
+package www.Asher.day0925;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * Created with IntelliJ IDEA
+ * Description:
+ * User:Light_Long
+ * Date:2019-09-25
+ * Time:21:08
+ */
+public class Main1 {
+
+    private static Lock lock = new ReentrantLock();
+    private static char pop = 'A';
+    private static int  num = 1;
+    private static int  flag = 1;
+    private static StringBuffer str = new StringBuffer();
+
+    static class  ExcuteThread1 extends Thread {
+
+
+        @Override
+        public void run() {
+            while(true) {
+                lock.lock();
+                if(flag % 2 != 0 && num <= 52) {
+                    System.out.print(num++);
+                    System.out.print(num++);
+                    flag++;
+                }
+                lock.unlock();
+            }
+        }
+    }
+
+    static class  ExcuteThread2 extends Thread {
+
+        @Override
+        public void run() {
+            while(true) {
+                lock.lock();
+                if(flag % 2 == 0 && pop >= 'A') {
+                    System.out.print(pop);
+                    System.out.print(" ");
+                    pop = (char)(pop + 1);
+                    flag++;
+                }
+                lock.unlock();
+            }
+        }
+    }
+    public static void main(String[] args) throws InterruptedException {
+
+        ExcuteThread1 thread1 = new ExcuteThread1();
+        ExcuteThread2 thread2 = new ExcuteThread2();
+        Thread thread11 = new Thread(thread1);
+        Thread thread22 = new Thread(thread2);
+        thread11.start();
+        thread22.start();
+    }
+}
