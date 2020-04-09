@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    >
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#0066ff"
+        android:text="按钮1"
+        android:textColor="#ff0033"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_below="@+id/btn_1"
+        android:layout_marginTop="10dp"
+        android:id="@+id/btn_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn2"
+        android:text="按钮2"
+        android:textColor="#ff0033"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_3"
+        android:layout_below="@+id/btn_2"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn3"
+        android:text="按钮3"
+        android:textColor="#ff0033"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btn_4"
+        android:layout_below="@+id/btn_3"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn4"
+        android:text="按钮4"
+        android:textColor="#ff0033"
+        android:onClick="showToast"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_11"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:text="文字1"
+        android:layout_below="@id/btn_4"
+        android:layout_marginTop="45dp"
+        android:background="#FFAD33"
+        android:gravity="center"
+        />
+
+</RelativeLayout>
